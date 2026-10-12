@@ -1,0 +1,1397 @@
+// ===================================================================
+// GE-Téléverse — Styles using Material 3 design tokens
+// Tokens provided by the CDN theme (cf. index.html) :
+//   primitives.css — palette de référence, typographie, formes, espacements
+//   theme.css      — jetons de couleur clair/sombre, elevation-level-1
+//
+// Espacements : --md-sys-spacings-xs (8px) · sm (12) · md (16) · lg (20) ·
+// xl (24) · 2xl (32) · 3xl (40) · 4xl (48) · 5xl (64) … jusqu'à 9xl (160).
+// L'échelle système commence à 8 px : les valeurs plus fines (2, 4, 6 px)
+// n'ont pas de jeton et restent en dur.
+// ===================================================================
+
+// Raccord temporaire entre les jetons typographiques du thème et ceux que
+// lit M3E, en attendant la publication de m3e.css sur le CDN (cf. l'en-tête
+// du fichier pour la procédure de retrait).
+@use 'm3e-compat';
+
+// Height of the <ge-header-public> web component (80px + 1px border)
+$ge-header-height: 81px;
+
+// Breakpoint for the upload card's 2-col → 1-col switch
+$upload-breakpoint: 768px;
+
+// Narrow phones: below this, a page-item's action buttons drop below the
+// filename instead of sitting beside it, so the filename keeps the row's
+// full width rather than being crushed to a few characters.
+$page-item-stack-breakpoint: 480px;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Contenu réservé aux technologies d'assistance : retiré de l'affichage sans
+// être retiré de l'arbre d'accessibilité (ce que feraient `display: none` ou
+// `visibility: hidden`). Sert aux régions live et aux textes d'aide référencés
+// par aria-describedby.
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// Anneau de focus commun aux éléments interactifs qui ne sont pas des
+// composants M3E (ceux-ci ont le leur) : poignée de déplacement, QR code.
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+    border-radius: var(--md-sys-shape-corner-extra-small, 4px);
+  }
+}
+
+body {
+  font-family: var(--md-sys-typescale-body-large-font, 'Roboto', sans-serif);
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  -webkit-font-smoothing: antialiased;
+
+  // No text selection anywhere: this app has no selectable content, and stray
+  // selection is distracting (notably while drag-reordering the page list).
+  user-select: none;
+}
+
+// Material 3 « expressif » déforme les boutons à l'appui : le rayon passe du
+// galet (plein) à 8 px, animé par un ressort, si bien qu'un bouton pressé
+// devient rectangulaire. Le M3 de référence conserve la forme au repos. Le
+// rayon d'appui est donc réaligné sur le rayon plein, ce qui neutralise la
+// déformation sans toucher aux composants ni à leur animation.
+// Ces jetons sans taille servent de repli à toutes les tailles (extra-small à
+// extra-large) ; seuls <m3e-button> et <m3e-icon-button> déforment (les FAB
+// n'ont pas de morphing d'appui).
+:root {
+  --m3e-button-shape-pressed-morph: var(--md-sys-shape-corner-full);
+  --m3e-icon-button-shape-pressed-morph: var(--md-sys-shape-corner-full);
+}
+
+// M3E ne peint que le `.base` interne de <m3e-snackbar> ; l'hôte, lui, garde le
+// fond que le navigateur donne à tout [popover] — Canvas, donc blanc — et il
+// dépasse en cadre à angles droits autour du toast, dont seul le `.base` porte
+// le rayon. L'hôte n'est qu'un conteneur positionné : il ne doit rien peindre.
+// (Bordure et gouttière du même style UA sont, elles, déjà neutralisées par
+// M3E.)
+m3e-snackbar {
+  background: transparent;
+
+  // Sauf en couleurs forcées, où M3E peint volontairement l'hôte (fond Canvas
+  // et contour CanvasText) : la règle ci-dessus, posée hors du shadow DOM,
+  // l'emporterait sur son :host et laisserait le toast sans cadre.
+  @media (forced-colors: active) {
+    background: Canvas;
+  }
+}
+
+// Conteneurs rendus focusables par script uniquement (tabIndex={-1}) pour
+// porter le focus après un changement d'écran ou à l'ouverture d'un dialogue.
+// Ils ne sont jamais atteints à la tabulation : l'anneau de focus n'aurait
+// rien à désigner.
+.upload-page:focus,
+.status-view:focus,
+.page-editor:focus,
+.page-editor__help:focus,
+.pdf-preview:focus,
+.session-expiry:focus {
+  outline: none;
+}
+
+// ===== Upload Page =====
+
+.upload-page {
+  min-height: calc(100dvh - #{$ge-header-height});
+  padding: var(--md-sys-spacings-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--md-sys-spacings-md);
+
+  @media (max-width: $upload-breakpoint) {
+    padding: var(--md-sys-spacings-xl) var(--md-sys-spacings-md) var(--md-sys-spacings-4xl);
+    gap: var(--md-sys-spacings-md);
+  }
+
+  &__header {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-xs);
+  }
+
+  &__title {
+    font-size: var(--md-sys-typescale-headline-large-size, 40px);
+    line-height: var(--md-sys-typescale-headline-large-line-height, 50px);
+    font-weight: 700;
+    letter-spacing: var(--md-sys-typescale-headline-large-tracking, 0);
+    color: var(--md-sys-color-on-background);
+  }
+
+  &__intro {
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-background);
+  }
+
+  // Phone-connected badge inside the card
+  &__phone-badge {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 6px;
+    padding: 6px var(--md-sys-spacings-md);
+    border-radius: 16px;
+    background: var(--md-sys-color-tertiary-container);
+    color: var(--md-sys-color-on-tertiary-container);
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    font-weight: var(--md-sys-typescale-label-large-weight, 500);
+
+    m3e-icon {
+      --m3e-icon-size: 18px;
+    }
+  }
+
+  // Main elevated card — match sub-card's color (pure surface) and elevation
+  &__card {
+    width: 100%;
+    max-width: 1000px;
+    --m3e-card-container-shape: var(--md-sys-shape-corner-medium, 12px);
+    --m3e-card-container-color: var(--md-sys-color-surface);
+    --m3e-elevated-card-container-color: var(--md-sys-color-surface);
+    --m3e-card-container-elevation: var(--md-sys-elevation-level2);
+    --m3e-elevated-card-container-elevation: var(--md-sys-elevation-level2);
+  }
+
+  &__card-body {
+    // Contexte de positionnement de l'overlay de dépôt (__drop-overlay), qui se
+    // cale en absolute sur toute la carte. Aucun intermédiaire (card-head, grid,
+    // grid-capture) n'est positionné, l'overlay remonte donc bien jusqu'ici.
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-2xl);
+    padding: var(--md-sys-spacings-2xl);
+
+    @media (max-width: $upload-breakpoint) {
+      padding: var(--md-sys-spacings-xl);
+      gap: var(--md-sys-spacings-xl);
+    }
+  }
+
+  // Overlay de dépôt plein-carte (bureau) — cf. UploadPage + useFileDrop. Au
+  // repos : opacity 0 + pointer-events none (cible de dépôt stable mais
+  // invisible et traversable). À l'arrivée d'un fichier sur l'app : --active le
+  // révèle et toute la carte devient zone de dépôt.
+  &__drop-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--md-sys-spacings-md);
+    padding: var(--md-sys-spacings-xl);
+    border-radius: var(--md-sys-shape-corner-medium, 12px);
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    // Cadre pointillé en retrait, rappelant la zone de dépôt d'origine.
+    outline: 2px dashed var(--md-sys-color-primary);
+    outline-offset: -16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease, background-color 160ms ease, color 160ms ease;
+  }
+
+  &__drop-overlay--active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  // Dépôt refusé (envoi en cours, fusion, ou quota atteint) : même géométrie
+  // que la zone de dépôt mais en palette « erreur ». Volontairement
+  // pointer-events none — l'overlay est purement informatif, le dépôt étant
+  // déjà neutralisé par useFileDrop (dropEffect none + drop ignoré).
+  &__drop-overlay--refused {
+    opacity: 1;
+    pointer-events: none;
+    background: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+    outline-color: var(--md-sys-color-error);
+  }
+
+  &__drop-overlay-icon {
+    --m3e-icon-size: 72px;
+    color: var(--md-sys-color-primary);
+  }
+
+  &__drop-overlay--refused &__drop-overlay-icon {
+    color: var(--md-sys-color-error);
+  }
+
+  &__drop-overlay-label {
+    margin: 0;
+    font-size: var(--md-sys-typescale-headline-small-size, 28px);
+    line-height: var(--md-sys-typescale-headline-small-line-height, 36px);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  // Apparition (translation + léger zoom) de l'icône et du libellé à chaque
+  // activation de l'overlay, par-dessus le fondu du fond.
+  &__drop-overlay--active &__drop-overlay-icon,
+  &__drop-overlay--active &__drop-overlay-label,
+  &__drop-overlay--refused &__drop-overlay-icon,
+  &__drop-overlay--refused &__drop-overlay-label {
+    animation: drop-overlay-pop 260ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__drop-overlay {
+      transition: none;
+    }
+
+    &__drop-overlay--active &__drop-overlay-icon,
+    &__drop-overlay--active &__drop-overlay-label,
+    &__drop-overlay--refused &__drop-overlay-icon,
+    &__drop-overlay--refused &__drop-overlay-label {
+      animation: none;
+    }
+  }
+
+  // Title + grid live together with a tight 16px gap; body then puts 32px
+  // between this head block and the actions row.
+  &__card-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-md);
+  }
+
+  &__card-title {
+    font-size: var(--md-sys-typescale-headline-medium-size, 32px);
+    line-height: var(--md-sys-typescale-headline-medium-line-height, 40px);
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  // Title + allowed-formats hint on one row; baseline-aligned so the hint
+  // sits on the headline's baseline. Wraps below the title on narrow widths.
+  &__card-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: var(--md-sys-spacings-md);
+    row-gap: 4px;
+  }
+
+  &__formats-hint {
+    font-size: var(--md-sys-typescale-body-small-size, 12px);
+    line-height: var(--md-sys-typescale-body-small-line-height, 16px);
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  // 2-col grid: [capture] [divider] [list]; collapses to 1 col on mobile
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: var(--md-sys-spacings-md);
+
+    @media (max-width: $upload-breakpoint) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__grid-capture,
+  &__grid-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-md);
+    min-width: 0;
+  }
+
+  // Desktop: cap the right column so the page list scrolls inside it
+  // instead of stretching the card. The cap is also bounded to the
+  // viewport so the whole app fits inside the desktop popup window
+  // (~849px tall, opened by <ge-televerse>) with the list as the only
+  // scroll surface. Without the viewport bound, a full list pushed the
+  // card past the popup height and the window itself grew a second
+  // scrollbar. 424px ≈ everything above/below the list (header, card
+  // chrome, page padding). Under-estimating it is harmless: the capture
+  // column already floors the grid height, so a shorter list cap can't
+  // shrink the card below that — it only decides when the list stops
+  // growing. Mobile keeps the page itself as the scroll surface and lets
+  // this column grow naturally.
+  &__grid-list {
+    max-height: min(455px, calc(100dvh - 424px));
+
+    @media (max-width: $upload-breakpoint) {
+      max-height: none;
+    }
+  }
+
+  &__grid-divider {
+    align-self: stretch;
+
+    @media (max-width: $upload-breakpoint) {
+      display: none;
+    }
+  }
+
+  &__list-intro {
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__storage {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    m3e-linear-progress-indicator {
+      width: 100%;
+    }
+
+    &--full {
+      --md-sys-color-primary: var(--md-sys-color-error);
+    }
+  }
+
+  &__storage-label {
+    font-size: var(--md-sys-typescale-label-small-size, 12px);
+    line-height: var(--md-sys-typescale-label-small-line-height, 16px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__finalizing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--md-sys-spacings-sm);
+    padding: var(--md-sys-spacings-xl) 0;
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media (max-width: $upload-breakpoint) {
+      flex-direction: column-reverse;
+      align-items: stretch;
+
+      m3e-button {
+        width: 100%;
+      }
+    }
+  }
+
+  // Bouton "Annuler" mobile : toujours sous les autres actions. Sous le
+  // breakpoint, pleine largeur comme tous les boutons de la page (les
+  // variantes tonal/filled sont posées en JSX) ; au-delà (tablette large),
+  // centré à la taille de son contenu.
+  &__cancel {
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+
+    @media (max-width: $upload-breakpoint) {
+      align-items: stretch;
+
+      m3e-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ===== File Capture =====
+
+.file-capture {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacings-md);
+
+  // Compact (mobile / has-camera) variant: two stacked buttons
+  &--compact {
+    m3e-button {
+      width: 100%;
+    }
+  }
+
+  // Desktop (no-camera) variant: nested card with three sections:
+  // drop target (top) / file picker button / QR + phone (bottom).
+  &--desktop {
+    padding: var(--md-sys-spacings-2xl);
+    border-radius: var(--md-sys-shape-corner-medium, 12px);
+    background: var(--md-sys-color-surface);
+    box-shadow: var(--md-sys-elevation-level2);
+    align-items: center;
+    text-align: center;
+  }
+
+  // Top section: idle drag-drop prompt (icon + label). The active drag feedback
+  // is the full-card overlay (.upload-page__drop-overlay) which covers this box
+  // while a file is over the app, so the idle layout stays compact (Figma).
+  &__drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--md-sys-spacings-md);
+    width: 100%;
+  }
+
+  &__drop-icon {
+    --m3e-icon-size: 35px;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__drop-label {
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__or {
+    display: flex;
+    align-items: center;
+    gap: var(--md-sys-spacings-md);
+    width: 100%;
+  }
+
+  &__or-line {
+    flex: 1;
+  }
+
+  &__or-label {
+    font-size: var(--md-sys-typescale-body-large-size, 16px);
+    line-height: var(--md-sys-typescale-body-large-line-height, 24px);
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--md-sys-spacings-xs);
+  }
+
+  &__phone-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--md-sys-spacings-xs);
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+
+    m3e-icon {
+      --m3e-icon-size: 20px;
+    }
+  }
+
+  &__phone-subtitle {
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+    color: var(--md-sys-color-on-surface);
+    text-align: center;
+  }
+
+  &__qr-canvas {
+    display: block;
+    border-radius: var(--md-sys-shape-corner-small, 8px);
+    margin-top: var(--md-sys-spacings-xs);
+  }
+}
+
+// ===== Page List =====
+
+.page-list {
+  // Desktop: flex column inside the capped grid-list so __items can
+  // flex-shrink + scroll. Mobile collapses back to default sizing.
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+
+  @media (max-width: $upload-breakpoint) {
+    flex: initial;
+  }
+
+  &__heading {
+    font-size: var(--md-sys-typescale-title-small-size, 16px);
+    font-weight: var(--md-sys-typescale-title-small-weight, 500);
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: var(--md-sys-spacings-xs);
+  }
+
+  &__items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-xs);
+
+    // Desktop: fill remaining space in the capped grid-list and scroll.
+    // Mobile lets the page itself scroll.
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+
+    @media (max-width: $upload-breakpoint) {
+      flex: initial;
+      overflow-y: visible;
+      scrollbar-gutter: auto;
+    }
+  }
+}
+
+.page-item {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacings-xs);
+  min-width: 0;
+
+  // Bouton natif (et non plus la seule icône) : il doit être atteignable au
+  // clavier pour réordonner les pages sans souris, et un <button> évite que le
+  // greffon d'accessibilité de dnd-kit ne bricole un rôle sur un élément
+  // masqué. Réinitialisé pour rester visuellement une simple icône.
+  &__handle {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    cursor: grab;
+    color: var(--md-sys-color-on-surface-variant);
+    --m3e-icon-size: 20px;
+    flex-shrink: 0;
+    touch-action: none;
+
+    @include focus-ring;
+
+    // Ligne encore en cours d'envoi : la poignée reste montée (cf. PageList)
+    // mais désactivée et invisible — elle ne fait que réserver sa gouttière,
+    // comme le faisait l'espaceur.
+    &--placeholder {
+      visibility: hidden;
+      cursor: default;
+    }
+  }
+
+  // Placeholder that reserves the drag-handle slot in the drag overlay copy,
+  // which has no handle of its own.
+  &__handle-spacer {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  // Bordered content box (matches Figma GE_Fileupload)
+  &__body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--md-sys-spacings-lg);
+    padding: var(--md-sys-spacings-xs) var(--md-sys-spacings-md);
+    background: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--md-sys-shape-corner-extra-small, 4px);
+    min-width: 0;
+  }
+
+  // 56×56 square vignette on the left
+  &__thumb {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--md-sys-shape-corner-extra-small, 4px);
+    overflow: hidden;
+    background: var(--md-sys-color-surface-container-low);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    m3e-skeleton {
+      width: 100%;
+      height: 100%;
+      --m3e-skeleton-square-shape: var(--md-sys-shape-corner-extra-small, 4px);
+    }
+  }
+
+  &__thumb-icon {
+    --m3e-icon-size: 28px;
+
+    &--error {
+      color: var(--md-sys-color-error);
+    }
+  }
+
+  // Right-hand region: filename (title), size/status (subtitle) and the action
+  // buttons. Laid out with a grid so the same markup gives two shapes:
+  //  - wide  : filename block on the left, buttons centred on the right
+  //  - narrow: filename spans the full width, with the size and the buttons
+  //            sharing the row below it (buttons no longer crush the filename)
+  &__main {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'title    actions'
+      'subtitle actions';
+    align-items: center;
+    column-gap: var(--md-sys-spacings-lg);
+    row-gap: 2px;
+
+    @media (max-width: $page-item-stack-breakpoint) {
+      grid-template-areas:
+        'title    title'
+        'subtitle actions';
+      column-gap: var(--md-sys-spacings-sm);
+      // Tight: one space unit between the filename and the row below it.
+      row-gap: 4px;
+    }
+  }
+
+  // Kept for the drag overlay (OverlayItem), which shows only the filename.
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__title {
+    grid-area: title;
+    min-width: 0;
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__subtitle {
+    grid-area: subtitle;
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+    color: var(--md-sys-color-on-surface-variant);
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  &__progress {
+    width: 100%;
+  }
+
+  &__retrying {
+    display: block;
+    margin-top: 2px;
+    font-size: var(--md-sys-typescale-body-small-size, 12px);
+    line-height: var(--md-sys-typescale-body-small-line-height, 16px);
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  &__error {
+    color: var(--md-sys-color-error);
+  }
+
+  // Both icon buttons use primary color per design
+  &__actions {
+    grid-area: actions;
+    display: flex;
+    align-items: center;
+    gap: var(--md-sys-spacings-md);
+    flex-shrink: 0;
+
+    m3e-icon-button {
+      --m3e-standard-icon-button-icon-color: var(--md-sys-color-primary);
+    }
+  }
+
+  &--dragging {
+    opacity: 0.4;
+
+    .page-item__body {
+      border-style: dashed;
+      border-color: var(--md-sys-color-outline);
+    }
+  }
+
+  &--entering {
+    animation: page-slide-in 300ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  &--overlay {
+    .page-item__body {
+      box-shadow: var(--md-sys-elevation-level2);
+    }
+  }
+}
+
+@keyframes drop-overlay-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes page-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// ===== Page Editor =====
+
+.page-editor {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: var(--md-sys-color-background);
+
+  // Slide up on entry so the user sees this is an overlay (and looks for the
+  // « Retour » link at the top of it) rather than a navigation.
+  animation: page-editor-enter 220ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+
+  // En-tête : lien de retour puis ligne de titre, à la place de l'ancienne
+  // m3e-app-bar. Les marges reprennent celles de .upload-page pour que
+  // l'éditeur s'aligne sur la page qu'il recouvre.
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--md-sys-spacings-xs);
+    padding: var(--md-sys-spacings-xl) var(--md-sys-spacings-xl) 0;
+
+    @media (max-width: $upload-breakpoint) {
+      padding: var(--md-sys-spacings-xl) var(--md-sys-spacings-md) 0;
+    }
+  }
+
+  // Le bouton texte réserve une gouttière avant son icône (1rem) : on la
+  // compense pour aligner « Retour » sur le bord gauche du titre.
+  &__back {
+    margin-inline-start: calc(var(--md-sys-spacings-md) * -1);
+  }
+
+  &__title-row {
+    display: flex;
+    align-items: center;
+    gap: var(--md-sys-spacings-md);
+    width: 100%;
+  }
+
+  // Le titre porte le nom du fichier, de longueur libre : il se replie sur
+  // plusieurs lignes plutôt que de repousser les boutons d'annulation hors de
+  // la ligne (ou de déborder, faute de point de coupure dans un nom de
+  // fichier).
+  // Le titre est un <m3e-heading variant="headline">, en `medium` au bureau et
+  // `small` sous le seuil (cf. PageEditor + useIsMobile) : la maquette demande
+  // du Roboto Bold 32 px puis 28 px, que les composants M3E reçoivent
+  // désormais par le raccord de _m3e-compat.scss.
+  &__title {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  // Les deux annulations : en bout de ligne de titre au-dessus du seuil,
+  // empilées pleine largeur sous l'aperçu en dessous. Les deux emplacements
+  // s'excluent (useIsMobile, calé sur $upload-breakpoint), une seule des deux
+  // séries de règles s'applique donc à la fois.
+  &__undo {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--md-sys-spacings-sm);
+
+    @media (max-width: $upload-breakpoint) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--md-sys-spacings-sm);
+      padding: 0 var(--md-sys-spacings-md) var(--md-sys-spacings-xl);
+    }
+  }
+
+  &__filename {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: var(--md-sys-spacings-sm) var(--md-sys-spacings-md) 0;
+    min-width: 0;
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+  }
+
+  &__filename-prefix {
+    color: var(--md-sys-color-on-surface-variant);
+    flex-shrink: 0;
+  }
+
+  &__filename-name {
+    color: var(--md-sys-color-on-surface);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  &__preview {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: var(--md-sys-spacings-md);
+    overflow: hidden;
+  }
+
+  &__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  &__loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  // Calé sur le bas de __preview (et non de l'overlay) : il recouvrirait sinon
+  // les boutons d'annulation sous le seuil mobile. À 100px du bas, il passe
+  // aussi au-dessus du FAB étendu qui ferme le menu, la colonne n'étant plus
+  // qu'en icônes à cette hauteur.
+  // Deux variantes dans la même zone : l'information s'efface d'elle-même,
+  // l'erreur reste jusqu'à l'opération suivante (cf. PageEditor). D'où le
+  // fondu porté par --info seul, et non plus par le bloc commun.
+  &__feedback {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--md-sys-spacings-xs) var(--md-sys-spacings-lg);
+    border-radius: 8px;
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    z-index: 110;
+    // Doublon visible d'une région live, jamais une cible : la pile de FAB
+    // passe dessous (z-index 105) et un message d'erreur, qui reste affiché,
+    // intercepterait sinon l'appui sur le bouton servant à réessayer — sous le
+    // seuil mobile la pile dépliée monte bien au-delà de ce niveau.
+    pointer-events: none;
+  }
+
+  &__feedback--info {
+    background: var(--md-sys-color-inverse-surface);
+    color: var(--md-sys-color-inverse-on-surface);
+    white-space: nowrap;
+    animation: feedback-fade 2s ease-out forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  // Mêmes teintes que l'Alert d'erreur de la page d'envoi, pour que l'échec se
+  // lise comme tel des deux côtés de l'overlay. Le texte s'y replie sur
+  // plusieurs lignes, contrairement aux confirmations : ces messages portent une
+  // consigne (vérifier le réseau, réessayer) et ne tiennent pas en une ligne
+  // sous le seuil mobile, où `nowrap` les ferait déborder de l'écran.
+  &__feedback--error {
+    background: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+    max-width: min(420px, 88%);
+    text-align: center;
+    box-shadow: var(--card-elevation);
+  }
+
+  // Colonne de largeur uniforme, calquée sur la métrique de m3e-fab-menu sans
+  // en reprendre le popover (cf. __fab-actions) : `stretch` aligne tous les FAB
+  // sur le plus large — le conteneur, en position absolue dans __preview, reste
+  // au max-content de son contenu.
+  // L'interligne ne suit plus --m3e-fab-menu-spacing (0.25rem) mais la
+  // maquette : `md` (16 px) au bureau, `xs` (8 px) sous le seuil, où les FAB
+  // réduits à l'icône se serrent. Les deux niveaux (pile et groupe d'actions)
+  // portent le même écart pour que la colonne reste régulière.
+  // La HAUTEUR ne bouge pas : un FAB `small` fait déjà 3.5rem, soit celle d'un
+  // m3e-fab-menu-item, et garde ses marges internes d'origine (1rem).
+  // La FORME non plus : la maquette demande des rectangles arrondis à 16 px —
+  // --md-sys-shape-corner-large, soit précisément la forme par défaut du FAB
+  // `small` chez M3E. Aucun --m3e-fab-small-shape à surcharger, ni en étendu
+  // (bureau) ni en icône seule (mobile, carré à coins arrondis).
+  &__fab {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    z-index: 105;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--md-sys-spacings-md);
+
+    // M3E tire le libellé d'un FAB `small` de title-medium, en supposant les
+    // 16 px / 500 du M3 de référence. Le thème y met 22 px / 700 — une valeur
+    // de titre, écrasante sur un FAB de 56 px. On ramène donc le libellé sur
+    // label-large (16 px / 500), qui est ce que M3 prescrit pour un FAB étendu.
+    // Seule cette échelle est concernée : la pile n'affiche de libellé qu'une
+    // fois ouverte, et ses FAB sont alors tous en `small` (cf. PageEditor).
+    --md-sys-typescale-title-medium-font-size: var(--md-sys-typescale-label-large-size);
+    --md-sys-typescale-title-medium-font-weight: var(--md-sys-typescale-label-large-weight);
+
+    // Sous le seuil, les actions sont réduites à l'icône seule (même valeur que
+    // useIsMobile) : les étirer en barres pleine largeur n'aurait pas de sens,
+    // la pile reste alignée à droite.
+    @media (max-width: $upload-breakpoint) {
+      align-items: flex-end;
+      gap: var(--md-sys-spacings-xs);
+    }
+  }
+
+  // Action FABs are rendered inline (not in a popover) so the undo FAB stays on
+  // top of the stack instead of being overlaid by the popover's top layer.
+  &__fab-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--md-sys-spacings-md);
+
+    @media (max-width: $upload-breakpoint) {
+      align-items: flex-end;
+      gap: var(--md-sys-spacings-xs);
+    }
+  }
+
+  &__help {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--md-sys-spacings-xl);
+  }
+
+  &__help-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  &__help-bubble {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    max-height: 100%;
+    overflow-y: auto;
+    background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface);
+    border-radius: var(--md-sys-shape-corner-large, 16px);
+    box-shadow: var(--md-sys-elevation-level2);
+    padding: var(--md-sys-spacings-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-md);
+    animation: page-editor-help-enter 200ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+  }
+
+  &__help-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--md-sys-spacings-sm);
+  }
+
+  &__help-title {
+    font-size: var(--md-sys-typescale-headline-small-size, 28px);
+    line-height: var(--md-sys-typescale-headline-small-line-height, 36px);
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__help-note {
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+    padding: var(--md-sys-spacings-sm) var(--md-sys-spacings-md);
+    border-radius: var(--md-sys-shape-corner-small, 8px);
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+  }
+
+  &__help-subtitle {
+    font-size: var(--md-sys-typescale-title-medium-size, 22px);
+    line-height: var(--md-sys-typescale-title-medium-line-height, 28px);
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__help-actions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-sm);
+
+    li {
+      display: flex;
+      gap: var(--md-sys-spacings-sm);
+      align-items: flex-start;
+    }
+
+    m3e-icon {
+      color: var(--md-sys-color-primary);
+      --m3e-icon-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    strong {
+      display: block;
+      font-size: var(--md-sys-typescale-body-large-size, 16px);
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+    }
+
+    p {
+      font-size: var(--md-sys-typescale-body-medium-size, 14px);
+      line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+      color: var(--md-sys-color-on-surface-variant);
+    }
+  }
+}
+
+// Full-screen inline PDF preview overlay. Mirrors .page-editor (fixed inset
+// overlay, app bar with a top-right close button, slide-up entry) so the
+// two full-screen surfaces feel like siblings.
+.pdf-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: var(--md-sys-color-background);
+
+  animation: page-editor-enter 220ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+
+  // Scrollable list of rendered pages. min-height: 0 lets this flex child
+  // actually shrink so its own overflow scrolls (rather than the column).
+  &__scroll {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--md-sys-spacings-sm) 0;
+    background: var(--md-sys-color-surface-container-low);
+  }
+
+  // Spacer whose height is the virtualizer's total; pages are absolutely
+  // positioned inside it via translateY.
+  &__pages {
+    position: relative;
+    width: 100%;
+  }
+
+  &__page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    canvas {
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // Centered spinner shown over the (empty) scroll area while the document
+  // metadata loads. Non-interactive so it never blocks scrolling.
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  // The load-error fallback fills the area below the app bar and centers
+  // its content.
+  &__fallback {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--md-sys-spacings-md);
+    padding: var(--md-sys-spacings-xl);
+    text-align: center;
+    color: var(--md-sys-color-on-surface-variant);
+    background: var(--md-sys-color-surface-container-low);
+  }
+}
+
+@keyframes feedback-fade {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes page-editor-enter {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes page-editor-help-enter {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+// ===== Alert (MD stacked-card pattern, used for success / error banners) =====
+
+.alert {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--md-sys-shape-corner-medium, 12px);
+  box-shadow: var(--md-sys-elevation-level2);
+  overflow: hidden;
+
+  &--success {
+    background: var(--md-sys-color-success-container);
+    color: var(--md-sys-color-on-success-container);
+  }
+
+  &--error {
+    background: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--md-sys-spacings-md);
+    padding: var(--md-sys-spacings-md) 4px 0 var(--md-sys-spacings-md);
+  }
+
+  &__icon {
+    --m3e-icon-size: 35px;
+    color: inherit;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    flex: 1;
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+    font-weight: 500;
+    color: inherit;
+  }
+
+  &__close {
+    --m3e-standard-icon-button-icon-color: currentColor;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    padding: var(--md-sys-spacings-md);
+    font-size: var(--md-sys-typescale-body-large-size, 16px);
+    line-height: var(--md-sys-typescale-body-large-line-height, 24px);
+    color: inherit;
+
+    p {
+      max-width: 620px;
+    }
+  }
+}
+
+// ===== Session Expiry Dialog =====
+
+.session-expiry {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--md-sys-spacings-xl);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.08);
+
+  &__card {
+    width: 100%;
+    max-width: 560px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-xl);
+    padding: var(--md-sys-spacings-xl);
+    background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface);
+    border-radius: var(--md-sys-shape-corner-large, 16px);
+    box-shadow: var(--md-sys-elevation-level2);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-md);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--md-sys-spacings-md);
+  }
+
+  &__title {
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__timer {
+    display: flex;
+    align-items: center;
+    gap: var(--md-sys-spacings-xs);
+    font-size: var(--md-sys-typescale-label-large-size, 16px);
+    line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+    font-variant-numeric: tabular-nums;
+
+    m3e-icon {
+      --m3e-icon-size: 20px;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacings-md);
+    font-size: var(--md-sys-typescale-label-medium-size, 14px);
+    line-height: var(--md-sys-typescale-label-medium-line-height, 20px);
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+// ===== Status View =====
+
+.status-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100dvh - #{$ge-header-height});
+  padding: var(--md-sys-spacings-md);
+
+  &__card {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--md-sys-spacings-md);
+    padding: var(--md-sys-spacings-3xl) var(--md-sys-spacings-xl);
+  }
+
+  &__icon {
+    --m3e-icon-size: 48px;
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  &__title {
+    font-size: var(--md-sys-typescale-title-large-size, 24px);
+    font-weight: var(--md-sys-typescale-title-large-weight, 700);
+    color: var(--md-sys-color-on-surface);
+  }
+
+  &__message {
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "GE Téléverse",
+    "or": "oder",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "move": "Verschieben",
+    "openNewTab": "In neuem Tab öffnen",
+    "closePage": "Sie können diese Seite schließen."
+  },
+  "a11y": {
+    "mainLabel": "Dokumente hinzufügen",
+    "moveHandle": "{{name}} verschieben, Seite {{position}} von {{total}}",
+    "moveHandleHint": "Verwenden Sie die Pfeiltasten nach oben und unten, um die Seitenreihenfolge zu ändern, Pos1 und Ende, um sie an den Anfang oder ans Ende zu setzen.",
+    "pageMoved": "{{name}} an Position {{position}} von {{total}} verschoben.",
+    "pageDeleted": "{{name}} aus dem Dokument entfernt.",
+    "uploadStarted": "{{name}} wird hochgeladen.",
+    "uploadDone": "{{name}} zum Dokument hinzugefügt.",
+    "uploadProgress": "Upload-Fortschritt für {{name}}",
+    "thumbnailAlt": "Vorschau von {{name}}",
+    "storageUsed": "Vom Dokument belegter Speicherplatz",
+    "phoneStatus": "Status des Telefons",
+    "processing": "Bild wird verarbeitet",
+    "editActions": "Bearbeitungsaktionen",
+    "qrHint": "Dieser QR-Code öffnet die Upload-Seite auf Ihrem Telefon.",
+    "pdfRegion_one": "Dokumentvorschau, {{count}} Seite",
+    "pdfRegion_other": "Dokumentvorschau, {{count}} Seiten",
+    "pdfPage": "Seite {{page}} von {{total}}",
+    "pdfLoading": "Vorschau wird geladen",
+    "pdfNotReadable": "Diese Vorschau ist ein Bild des Dokuments und kann von einem Screenreader nicht gelesen werden. Verwenden Sie «In neuem Tab öffnen», um es im PDF-Viewer Ihres Browsers anzuzeigen.",
+    "timeRemaining": "Verbleibende Zeit: {{minutes}} Minuten und {{seconds}} Sekunden."
+  },
+  "units": {
+    "byte": "B",
+    "kilobyte": "KB",
+    "megabyte": "MB",
+    "gigabyte": "GB"
+  },
+  "status": {
+    "notFound": {
+      "title": "Sitzung nicht gefunden",
+      "message": "In der URL wurde kein Sitzungstoken gefunden. Bitte scannen Sie den QR-Code aus Ihrem Formular."
+    },
+    "loading": {
+      "title": "Wird geladen…",
+      "message": "Verbindung zur Sitzung wird hergestellt"
+    },
+    "expired": {
+      "title": "Ihre Sitzung ist abgelaufen",
+      "line1": "Die verfügbare Zeit ist abgelaufen.",
+      "line2": "Schließen Sie diese Seite, um zum vorherigen Bildschirm zurückzukehren."
+    },
+    "error": {
+      "title": "Fehler"
+    },
+    "cancelled": {
+      "title": "Hochladen abgebrochen",
+      "secondaryLine1": "Ihr Telefon wurde getrennt.",
+      "primaryLine1": "Es wurde kein Dokument gespeichert."
+    },
+    "finalizedSecondary": {
+      "title": "Seiten übermittelt"
+    }
+  },
+  "upload": {
+    "title": "Ein Dokument hinzufügen",
+    "intro": "Wählen Sie Ihre Dateien von Ihrem Computer oder Telefon aus und speichern Sie sie in einer PDF-Datei.",
+    "introShort": "Wählen Sie Ihre Dateien aus und speichern Sie sie in einer PDF-Datei.",
+    "formatsHint": "Zulässige Formate: {{formats}}.",
+    "maxPagesHint": "Das zu speichernde finale PDF darf maximal {{count}} Seiten umfassen.",
+    "cardTitle": "Dateien auswählen",
+    "phoneConnected": "Telefon verbunden",
+    "storageRemaining": "Verbleibender Speicher {{percent}}%",
+    "finalizing": "Wird zusammengeführt…",
+    "preview": "Vorschau",
+    "save": "In einem Dokument speichern",
+    "done": "Fertig",
+    "drop": {
+      "here": "Dateien hier ablegen",
+      "refusedFinalizing": "Zusammenführung läuft. Bitte warten Sie, bevor Sie Dateien hinzufügen.",
+      "refusedUploading": "Ein Upload läuft bereits. Bitte warten Sie, bevor Sie Dateien hinzufügen.",
+      "refusedSize": "Das verfügbare Größenlimit ist erreicht. Löschen Sie Dateien, um weitere hinzuzufügen.",
+      "refusedPages": "Das Limit beträgt {{count}} Seiten. Löschen Sie Dateien, um weitere hinzuzufügen."
+    }
+  },
+  "fileCapture": {
+    "takePhoto": "Foto aufnehmen",
+    "chooseFile": "Datei auswählen",
+    "dragDrop": "Dateien hierher ziehen und ablegen",
+    "selectFiles": "Dateien auswählen",
+    "importOrPhoto": "Dateien importieren oder Fotos aufnehmen"
+  },
+  "pageList": {
+    "heading": "Seiten des Dokuments ({{count}})",
+    "retrying": "Neuer Versuch…"
+  },
+  "pageEditor": {
+    "editing": "Wird bearbeitet: {{fileName}}",
+    "back": "Zurück",
+    "backToList": "Zurück zur Dateiliste",
+    "closeHelp": "Hilfe schließen",
+    "helpTitle": "Hilfe zur Bearbeitung",
+    "helpNote": "Jede Änderung wird sofort angewendet und automatisch gespeichert – keine Bestätigung erforderlich.",
+    "helpSubtitle": "Verfügbare Aktionen",
+    "help": "Hilfe",
+    "undoLast": "Letzten Vorgang rückgängig",
+    "undoAll": "Alles rückgängig",
+    "hideMenu": "Menü ausblenden",
+    "showMenu": "Menü einblenden",
+    "changesApplied": "Ihre Änderungen wurden übernommen",
+    "actions": {
+      "rotateRight": {
+        "label": "Drehen (rechts)",
+        "description": "Dreht die Seite um 90° im Uhrzeigersinn."
+      },
+      "rotateLeft": {
+        "label": "Drehen (links)",
+        "description": "Dreht die Seite um 90° gegen den Uhrzeigersinn."
+      },
+      "whiteBalance": {
+        "label": "Weißabgleich",
+        "description": "Passt Helligkeit und Farbbalance automatisch an, um den Text hervorzuheben."
+      },
+      "deskew": {
+        "label": "Ausrichten",
+        "description": "Erkennt die Dokumentkonturen und korrigiert die Perspektive bei schräger Aufnahme."
+      },
+      "crop": {
+        "label": "Zuschneiden",
+        "description": "Erkennt automatisch die Dokumentränder und schneidet das Bild darum zu."
+      }
+    },
+    "feedback": {
+      "noDocument": "Kein Dokument erkannt – Bild unverändert",
+      "rotationApplied": "Drehung angewendet",
+      "whiteBalanceApplied": "Weißabgleich angewendet",
+      "perspectiveCorrected": "Perspektive korrigiert",
+      "cropApplied": "Zuschnitt angewendet",
+      "editUndone": "Änderung rückgängig gemacht",
+      "editsUndone": "Änderungen rückgängig gemacht",
+      "errorBusy": "Der Dienst ist stark ausgelastet — der Vorgang wurde nicht abgeschlossen, versuchen Sie es gleich erneut",
+      "errorNetwork": "Verbindung unterbrochen — der Vorgang wurde nicht abgeschlossen, prüfen Sie Ihr Netzwerk",
+      "errorGeneric": "Der Vorgang wurde nicht abgeschlossen — versuchen Sie es erneut",
+      "errorNotEditable": "Diese Bearbeitung gilt nur für Fotos und gescannte Seiten — Sie können diese Seite drehen oder löschen",
+      "errorConflict": "Die Seite wurde inzwischen geändert — sie wurde soeben aktualisiert, versuchen Sie es bei Bedarf erneut",
+      "errorTooLarge": "Die bearbeitete Seite würde die maximale Dokumentgröße überschreiten — Bild unverändert"
+    }
+  },
+  "pdfPreview": {
+    "title": "Dokumentvorschau",
+    "fallback": "Das PDF kann in der Anwendung nicht angezeigt werden."
+  },
+  "sessionCreator": {
+    "initTitle": "Initialisierung…",
+    "initMessage": "Sitzung wird erstellt",
+    "busyWithTime": "Von diesem Arbeitsplatz ist bereits ein anderes Upload-Fenster aktiv (bis {{time}}). Sie können warten oder sofort eine neue Sitzung starten – die vorherige wird verworfen.",
+    "busyNoTime": "Von diesem Arbeitsplatz ist bereits ein anderes Upload-Fenster aktiv. Sie können eine neue Sitzung starten – die vorherige wird verworfen.",
+    "startNew": "Neue Sitzung starten",
+    "createFailed": "Sitzung kann nicht erstellt werden"
+  },
+  "sessionExpiry": {
+    "title": "Ihre Sitzung läuft bald ab",
+    "question": "Möchten Sie auf dieser Seite bleiben?",
+    "stay": "Auf dieser Seite bleiben"
+  },
+  "success": {
+    "intro": "Wählen Sie Ihre Dateien von Ihrem Computer oder Telefon aus und speichern Sie sie in einer PDF-Datei.",
+    "introShort": "Wählen Sie Ihre Dateien aus und speichern Sie sie in einer PDF-Datei.",
+    "title": "Dokument gespeichert!",
+    "savedWithCallback": "Ihr Dokument wurde gespeichert. Schließen Sie die Seite, um zu Ihrem Online-Verfahren zurückzukehren."
+  },
+  "errors": {
+    "server": "Ein Fehler ist aufgetreten. Wir tun unser Möglichstes, um den Dienst wiederherzustellen. Bitte versuchen Sie es später erneut.",
+    "addFailed": "Das Hinzufügen der Datei ist fehlgeschlagen",
+    "addPartiallyFailed": "Das Hinzufügen der Datei ist teilweise fehlgeschlagen",
+    "cancelFailedTitle": "Der Abbruch ist fehlgeschlagen",
+    "cancelFailedMessage": "Das Telefon konnte nicht getrennt werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "finalize": "Fehler beim Abschließen",
+    "disconnect": "Fehler beim Trennen",
+    "loadSession": "Sitzung kann nicht geladen werden",
+    "reorderFailedTitle": "Verschieben fehlgeschlagen",
+    "reorderFailedMessage": "Die Seitenreihenfolge konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+    "sessionFinalizing": "Das Dokument wird gerade gespeichert: Es kann nicht mehr geändert werden.",
+    "deleteFailedTitle": "Löschen fehlgeschlagen",
+    "deleteFailedMessage": "Die Seite konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "invalidFormat": "{{name}}: Die Datei muss in einem zulässigen Format vorliegen ({{formats}}).",
+    "corrupt": "{{name}}: Die Datei ist beschädigt oder unlesbar. Ändern Sie Ihre Datei und senden Sie sie erneut.",
+    "infected": "{{name}}: Die Datei wurde von der Virenprüfung abgelehnt. Senden Sie ein anderes Dokument.",
+    "duplicate": "{{name}}: Diese Datei wurde Ihrem Dokument bereits hinzugefügt.",
+    "timeout": "{{name}}: Der Upload hat zu lange gedauert. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "tooLarge413": "Die Datei ist zu groß. Wählen Sie eine kleinere Datei.",
+    "maxPagesReached": "Die maximale Seitenzahl ist erreicht.",
+    "uploadFailed": "Upload fehlgeschlagen.",
+    "short": "Fehlgeschlagen",
+    "fileTooLarge": "Diese Datei ist {{size}} {{unit}} groß. Die maximal zulässige Größe beträgt {{max}} {{unit}}.",
+    "sessionSizeExceeded": "{{name}} ({{fileSize}}): Die Datei kann nicht angehängt werden, das verfügbare Limit beträgt {{available}}.",
+    "sessionSizePartial": "{{name}} ({{fileSize}}): Ein Teil Ihrer Datei konnte nicht hinzugefügt werden, da das verfügbare Limit {{available}} beträgt.",
+    "pageLimitWithMax_one": "{{names}}: Ihr Dokument hat zu viele Seiten. Das Limit beträgt {{max}} Seiten. Bitte reduzieren Sie die Seitenzahl.",
+    "pageLimitWithMax_other": "{{names}}: Ihre Dokumente haben zu viele Seiten. Das Limit beträgt {{max}} Seiten. Bitte reduzieren Sie die Seitenzahl.",
+    "pageLimitNoMax_one": "{{names}}: Ihr Dokument hat zu viele Seiten. Bitte reduzieren Sie die Seitenzahl.",
+    "pageLimitNoMax_other": "{{names}}: Ihre Dokumente haben zu viele Seiten. Bitte reduzieren Sie die Seitenzahl."
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "GE Téléverse",
+    "or": "or",
+    "cancel": "Cancel",
+    "close": "Close",
+    "edit": "Edit",
+    "delete": "Delete",
+    "move": "Move",
+    "openNewTab": "Open in a new tab",
+    "closePage": "You can close this page."
+  },
+  "a11y": {
+    "mainLabel": "Add documents",
+    "moveHandle": "Move {{name}}, page {{position}} of {{total}}",
+    "moveHandleHint": "Use the up and down arrow keys to change the page order, Home and End to move it first or last.",
+    "pageMoved": "{{name}} moved to position {{position}} of {{total}}.",
+    "pageDeleted": "{{name}} removed from the document.",
+    "uploadStarted": "Uploading {{name}}.",
+    "uploadDone": "{{name}} added to the document.",
+    "uploadProgress": "Upload progress for {{name}}",
+    "thumbnailAlt": "Preview of {{name}}",
+    "storageUsed": "Space used by the document",
+    "phoneStatus": "Phone status",
+    "processing": "Processing the image",
+    "editActions": "Editing actions",
+    "qrHint": "This QR code opens the upload page on your phone.",
+    "pdfRegion_one": "Document preview, {{count}} page",
+    "pdfRegion_other": "Document preview, {{count}} pages",
+    "pdfPage": "Page {{page}} of {{total}}",
+    "pdfLoading": "Loading the preview",
+    "pdfNotReadable": "This preview is an image of the document and cannot be read by a screen reader. Use \"Open in a new tab\" to display it in your browser's PDF viewer.",
+    "timeRemaining": "Time remaining: {{minutes}} minutes and {{seconds}} seconds."
+  },
+  "units": {
+    "byte": "B",
+    "kilobyte": "KB",
+    "megabyte": "MB",
+    "gigabyte": "GB"
+  },
+  "status": {
+    "notFound": {
+      "title": "Session not found",
+      "message": "No session token was found in the URL. Please scan the QR code from your form."
+    },
+    "loading": {
+      "title": "Loading…",
+      "message": "Connecting to the session"
+    },
+    "expired": {
+      "title": "Your session has expired",
+      "line1": "The available time has run out.",
+      "line2": "Close this page to return to the previous screen."
+    },
+    "error": {
+      "title": "Error"
+    },
+    "cancelled": {
+      "title": "Upload cancelled",
+      "secondaryLine1": "Your phone has been disconnected.",
+      "primaryLine1": "No document was saved."
+    },
+    "finalizedSecondary": {
+      "title": "Pages sent"
+    }
+  },
+  "upload": {
+    "title": "Add a document",
+    "intro": "Choose your files from your computer or phone, then save them as a PDF.",
+    "introShort": "Choose your files, then save them as a PDF.",
+    "formatsHint": "Allowed formats: {{formats}}.",
+    "maxPagesHint": "The final PDF to be saved may contain a maximum of {{count}} pages.",
+    "cardTitle": "Choose files",
+    "phoneConnected": "Phone connected",
+    "storageRemaining": "Remaining space {{percent}}%",
+    "finalizing": "Merging…",
+    "preview": "Preview",
+    "save": "Save to a document",
+    "done": "I'm done",
+    "drop": {
+      "here": "Drop your files here",
+      "refusedFinalizing": "Merging in progress. Please wait before adding files.",
+      "refusedUploading": "An upload is already in progress. Please wait before adding files.",
+      "refusedSize": "The available size limit has been reached. Delete files to add more.",
+      "refusedPages": "The limit is {{count}} pages. Delete files to add more."
+    }
+  },
+  "fileCapture": {
+    "takePhoto": "Take a photo",
+    "chooseFile": "Choose a file",
+    "dragDrop": "Drag and drop your files here",
+    "selectFiles": "Select files",
+    "importOrPhoto": "Import files or take photos"
+  },
+  "pageList": {
+    "heading": "Document pages ({{count}})",
+    "retrying": "Retrying…"
+  },
+  "pageEditor": {
+    "editing": "Editing: {{fileName}}",
+    "back": "Back",
+    "backToList": "Back to the file list",
+    "closeHelp": "Close help",
+    "helpTitle": "Editing help",
+    "helpNote": "Every change is applied immediately and saved automatically — no need to confirm.",
+    "helpSubtitle": "Available actions",
+    "help": "Help",
+    "undoLast": "Undo last operation",
+    "undoAll": "Undo all",
+    "hideMenu": "Hide menu",
+    "showMenu": "Show menu",
+    "changesApplied": "Your changes have been applied",
+    "actions": {
+      "rotateRight": {
+        "label": "Rotate (right)",
+        "description": "Rotates the page 90° clockwise."
+      },
+      "rotateLeft": {
+        "label": "Rotate (left)",
+        "description": "Rotates the page 90° counterclockwise."
+      },
+      "whiteBalance": {
+        "label": "White balance",
+        "description": "Automatically adjusts brightness and colour balance to make the text stand out."
+      },
+      "deskew": {
+        "label": "Straighten",
+        "description": "Detects the document's edges and corrects the perspective when the shot is at an angle."
+      },
+      "crop": {
+        "label": "Crop",
+        "description": "Automatically detects the document's edges and crops the image around them."
+      }
+    },
+    "feedback": {
+      "noDocument": "No document detected — image unchanged",
+      "rotationApplied": "Rotation applied",
+      "whiteBalanceApplied": "White balance applied",
+      "perspectiveCorrected": "Perspective corrected",
+      "cropApplied": "Crop applied",
+      "editUndone": "Change undone",
+      "editsUndone": "Changes undone",
+      "errorBusy": "The service is very busy — the operation did not complete, try again shortly",
+      "errorNetwork": "Connection lost — the operation did not complete, check your network",
+      "errorGeneric": "The operation did not complete — try again",
+      "errorNotEditable": "This adjustment only applies to photos and scanned pages — you can rotate or delete this page",
+      "errorConflict": "The page changed in the meantime — it has just been refreshed, try again if needed",
+      "errorTooLarge": "The edited page would exceed the maximum document size — image unchanged"
+    }
+  },
+  "pdfPreview": {
+    "title": "Document preview",
+    "fallback": "Unable to display the PDF in the application."
+  },
+  "sessionCreator": {
+    "initTitle": "Initialising…",
+    "initMessage": "Creating the session",
+    "busyWithTime": "Another upload window is already active from this workstation (until {{time}}). You can wait or start a new session immediately — the previous one will be discarded.",
+    "busyNoTime": "Another upload window is already active from this workstation. You can start a new session — the previous one will be discarded.",
+    "startNew": "Start a new session",
+    "createFailed": "Unable to create the session"
+  },
+  "sessionExpiry": {
+    "title": "Your session is about to expire",
+    "question": "Would you like to stay on this page?",
+    "stay": "Stay on this page"
+  },
+  "success": {
+    "intro": "Choose your files from your computer or phone, then save them as a PDF.",
+    "introShort": "Choose your files, then save them as a PDF.",
+    "title": "Document saved!",
+    "savedWithCallback": "Your document has been saved. Close the page to return to your online procedure."
+  },
+  "errors": {
+    "server": "An error occurred. We are doing everything we can to restore the service. Please try again later.",
+    "addFailed": "Failed to add the file",
+    "addPartiallyFailed": "The file was only partially added",
+    "cancelFailedTitle": "Cancellation failed",
+    "cancelFailedMessage": "Unable to disconnect the phone. Check your connection and try again.",
+    "finalize": "Error while finalising",
+    "disconnect": "Error while disconnecting",
+    "loadSession": "Unable to load the session",
+    "reorderFailedTitle": "Move failed",
+    "reorderFailedMessage": "The page order could not be saved. Please try again.",
+    "sessionFinalizing": "The document is being saved: it can no longer be changed.",
+    "deleteFailedTitle": "Delete failed",
+    "deleteFailedMessage": "The page could not be deleted. Please try again.",
+    "invalidFormat": "{{name}}: The file must be in an allowed format ({{formats}}).",
+    "corrupt": "{{name}}: The file is corrupted or unreadable. Edit your file and send it again.",
+    "infected": "{{name}}: The file was rejected by the antivirus check. Send another document.",
+    "duplicate": "{{name}}: This file has already been added to your document.",
+    "timeout": "{{name}}: The upload took too long. Check your connection and try again.",
+    "tooLarge413": "The file is too large. Choose a smaller file.",
+    "maxPagesReached": "The maximum number of pages has been reached.",
+    "uploadFailed": "Upload failed.",
+    "short": "Failed",
+    "fileTooLarge": "This file is {{size}} {{unit}}. The maximum allowed size is {{max}} {{unit}}.",
+    "sessionSizeExceeded": "{{name}} ({{fileSize}}): Unable to attach your file, the available limit is {{available}}.",
+    "sessionSizePartial": "{{name}} ({{fileSize}}): Part of your file could not be added, as the available limit is {{available}}.",
+    "pageLimitWithMax_one": "{{names}}: Your document has too many pages. The limit is {{max}} pages. Please reduce the number of pages.",
+    "pageLimitWithMax_other": "{{names}}: Your documents have too many pages. The limit is {{max}} pages. Please reduce the number of pages.",
+    "pageLimitNoMax_one": "{{names}}: Your document has too many pages. Please reduce the number of pages.",
+    "pageLimitNoMax_other": "{{names}}: Your documents have too many pages. Please reduce the number of pages."
+  }
+}

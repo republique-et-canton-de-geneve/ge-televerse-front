@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "GE Téléverse",
+    "or": "ou",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "move": "Mover",
+    "openNewTab": "Abrir num novo separador",
+    "closePage": "Pode fechar esta página."
+  },
+  "a11y": {
+    "mainLabel": "Adicionar documentos",
+    "moveHandle": "Mover {{name}}, página {{position}} de {{total}}",
+    "moveHandleHint": "Utilize as setas para cima e para baixo para alterar a ordem das páginas, Home e End para a colocar em primeiro ou em último.",
+    "pageMoved": "{{name}} movido para a posição {{position}} de {{total}}.",
+    "pageDeleted": "{{name}} removido do documento.",
+    "uploadStarted": "A carregar {{name}}.",
+    "uploadDone": "{{name}} adicionado ao documento.",
+    "uploadProgress": "Progresso do carregamento de {{name}}",
+    "thumbnailAlt": "Pré-visualização de {{name}}",
+    "storageUsed": "Espaço ocupado pelo documento",
+    "phoneStatus": "Estado do telemóvel",
+    "processing": "A processar a imagem",
+    "editActions": "Ações de edição",
+    "qrHint": "Este código QR abre a página de carregamento no seu telemóvel.",
+    "pdfRegion_one": "Pré-visualização do documento, {{count}} página",
+    "pdfRegion_other": "Pré-visualização do documento, {{count}} páginas",
+    "pdfPage": "Página {{page}} de {{total}}",
+    "pdfLoading": "A carregar a pré-visualização",
+    "pdfNotReadable": "Esta pré-visualização é uma imagem do documento e não pode ser lida por um leitor de ecrã. Utilize «Abrir num novo separador» para a apresentar no visualizador de PDF do seu navegador.",
+    "timeRemaining": "Tempo restante: {{minutes}} minutos e {{seconds}} segundos."
+  },
+  "units": {
+    "byte": "B",
+    "kilobyte": "KB",
+    "megabyte": "MB",
+    "gigabyte": "GB"
+  },
+  "status": {
+    "notFound": {
+      "title": "Sessão não encontrada",
+      "message": "Não foi encontrado nenhum token de sessão no URL. Leia o código QR a partir do seu formulário."
+    },
+    "loading": {
+      "title": "A carregar…",
+      "message": "A ligar à sessão"
+    },
+    "expired": {
+      "title": "A sua sessão expirou",
+      "line1": "O tempo disponível esgotou-se.",
+      "line2": "Feche esta página para voltar ao ecrã anterior."
+    },
+    "error": {
+      "title": "Erro"
+    },
+    "cancelled": {
+      "title": "Carregamento cancelado",
+      "secondaryLine1": "O seu telemóvel foi desligado.",
+      "primaryLine1": "Nenhum documento foi guardado."
+    },
+    "finalizedSecondary": {
+      "title": "Páginas enviadas"
+    }
+  },
+  "upload": {
+    "title": "Adicionar um documento",
+    "intro": "Escolha os seus ficheiros a partir do computador ou do telemóvel e guarde-os num PDF.",
+    "introShort": "Escolha os seus ficheiros e guarde-os num PDF.",
+    "formatsHint": "Formatos permitidos: {{formats}}.",
+    "maxPagesHint": "O PDF final a guardar pode conter no máximo {{count}} páginas.",
+    "cardTitle": "Escolher ficheiros",
+    "phoneConnected": "Telemóvel ligado",
+    "storageRemaining": "Espaço restante {{percent}}%",
+    "finalizing": "A fundir…",
+    "preview": "Pré-visualização",
+    "save": "Guardar num documento",
+    "done": "Concluí",
+    "drop": {
+      "here": "Largue aqui os seus ficheiros",
+      "refusedFinalizing": "Fusão em curso. Aguarde antes de adicionar ficheiros.",
+      "refusedUploading": "Já existe um carregamento em curso. Aguarde antes de adicionar ficheiros.",
+      "refusedSize": "O limite de tamanho disponível foi atingido. Elimine ficheiros para adicionar outros.",
+      "refusedPages": "O limite é de {{count}} páginas. Elimine ficheiros para adicionar outros."
+    }
+  },
+  "fileCapture": {
+    "takePhoto": "Tirar uma fotografia",
+    "chooseFile": "Escolher um ficheiro",
+    "dragDrop": "Arraste e largue aqui os seus ficheiros",
+    "selectFiles": "Selecionar ficheiros",
+    "importOrPhoto": "Importar ficheiros ou tirar fotografias"
+  },
+  "pageList": {
+    "heading": "Páginas do documento ({{count}})",
+    "retrying": "Nova tentativa…"
+  },
+  "pageEditor": {
+    "editing": "A editar: {{fileName}}",
+    "back": "Voltar",
+    "backToList": "Voltar à lista de ficheiros",
+    "closeHelp": "Fechar a ajuda",
+    "helpTitle": "Ajuda à edição",
+    "helpNote": "Qualquer alteração é aplicada imediatamente e guardada automaticamente — não é necessário confirmar.",
+    "helpSubtitle": "Ações disponíveis",
+    "help": "Ajuda",
+    "undoLast": "Anular última operação",
+    "undoAll": "Anular tudo",
+    "hideMenu": "Ocultar o menu",
+    "showMenu": "Mostrar o menu",
+    "changesApplied": "As suas alterações foram aplicadas",
+    "actions": {
+      "rotateRight": {
+        "label": "Rodar (direita)",
+        "description": "Roda a página 90° no sentido dos ponteiros do relógio."
+      },
+      "rotateLeft": {
+        "label": "Rodar (esquerda)",
+        "description": "Roda a página 90° no sentido contrário aos ponteiros do relógio."
+      },
+      "whiteBalance": {
+        "label": "Equilíbrio de brancos",
+        "description": "Ajusta automaticamente o brilho e o equilíbrio de cores para realçar o texto."
+      },
+      "deskew": {
+        "label": "Endireitar",
+        "description": "Deteta os contornos do documento e corrige a perspetiva quando a fotografia está inclinada."
+      },
+      "crop": {
+        "label": "Recortar",
+        "description": "Deteta automaticamente as margens do documento e recorta a imagem em torno delas."
+      }
+    },
+    "feedback": {
+      "noDocument": "Nenhum documento detetado — imagem inalterada",
+      "rotationApplied": "Rotação aplicada",
+      "whiteBalanceApplied": "Equilíbrio de brancos aplicado",
+      "perspectiveCorrected": "Perspetiva corrigida",
+      "cropApplied": "Recorte aplicado",
+      "editUndone": "Alteração anulada",
+      "editsUndone": "Alterações anuladas",
+      "errorBusy": "O serviço está muito solicitado — a operação não foi concluída, tente novamente daqui a pouco",
+      "errorNetwork": "Ligação interrompida — a operação não foi concluída, verifique a sua rede",
+      "errorGeneric": "A operação não foi concluída — tente novamente",
+      "errorNotEditable": "Este ajuste só se aplica a fotografias e páginas digitalizadas — pode rodar ou eliminar esta página",
+      "errorConflict": "A página foi alterada entretanto — acabou de ser atualizada, tente novamente se necessário",
+      "errorTooLarge": "A página editada excederia o tamanho máximo do documento — imagem inalterada"
+    }
+  },
+  "pdfPreview": {
+    "title": "Pré-visualização do documento",
+    "fallback": "Não é possível apresentar o PDF na aplicação."
+  },
+  "sessionCreator": {
+    "initTitle": "Inicialização…",
+    "initMessage": "A criar a sessão",
+    "busyWithTime": "Já está ativa outra janela de carregamento neste posto (até às {{time}}). Pode aguardar ou iniciar imediatamente uma nova sessão — a anterior será abandonada.",
+    "busyNoTime": "Já está ativa outra janela de carregamento neste posto. Pode iniciar uma nova sessão — a anterior será abandonada.",
+    "startNew": "Iniciar uma nova sessão",
+    "createFailed": "Não é possível criar a sessão"
+  },
+  "sessionExpiry": {
+    "title": "A sua sessão está prestes a expirar",
+    "question": "Deseja permanecer nesta página?",
+    "stay": "Permanecer nesta página"
+  },
+  "success": {
+    "intro": "Escolha os seus ficheiros a partir do computador ou do telemóvel e guarde-os num PDF.",
+    "introShort": "Escolha os seus ficheiros e guarde-os num PDF.",
+    "title": "Documento guardado!",
+    "savedWithCallback": "O seu documento foi guardado. Feche a página para voltar ao seu procedimento em linha."
+  },
+  "errors": {
+    "server": "Ocorreu um erro. Estamos a fazer tudo o possível para restabelecer o serviço. Tente novamente mais tarde.",
+    "addFailed": "Falha ao adicionar o ficheiro",
+    "addPartiallyFailed": "Falha parcial ao adicionar o ficheiro",
+    "cancelFailedTitle": "Falha ao cancelar",
+    "cancelFailedMessage": "Não é possível desligar o telemóvel. Verifique a sua ligação e tente novamente.",
+    "finalize": "Erro ao finalizar",
+    "disconnect": "Erro ao desligar",
+    "loadSession": "Não é possível carregar a sessão",
+    "reorderFailedTitle": "Falha ao mover",
+    "reorderFailedMessage": "Não foi possível guardar a ordem das páginas. Tente novamente.",
+    "sessionFinalizing": "O documento está a ser guardado: já não pode ser alterado.",
+    "deleteFailedTitle": "Falha ao eliminar",
+    "deleteFailedMessage": "Não foi possível eliminar a página. Tente novamente.",
+    "invalidFormat": "{{name}}: O ficheiro deve estar num formato permitido ({{formats}}).",
+    "corrupt": "{{name}}: O ficheiro está danificado ou ilegível. Altere o ficheiro e envie-o novamente.",
+    "infected": "{{name}}: O ficheiro foi rejeitado pelo controlo antivírus. Envie outro documento.",
+    "duplicate": "{{name}}: Este ficheiro já foi adicionado ao seu documento.",
+    "timeout": "{{name}}: O carregamento demorou demasiado tempo. Verifique a sua ligação e tente novamente.",
+    "tooLarge413": "O ficheiro é demasiado grande. Escolha um ficheiro mais pequeno.",
+    "maxPagesReached": "Foi atingido o número máximo de páginas.",
+    "uploadFailed": "Falha no carregamento.",
+    "short": "Falha",
+    "fileTooLarge": "Este ficheiro tem {{size}} {{unit}}. O tamanho máximo permitido é {{max}} {{unit}}.",
+    "sessionSizeExceeded": "{{name}} ({{fileSize}}): Não é possível anexar o ficheiro, o limite disponível é {{available}}.",
+    "sessionSizePartial": "{{name}} ({{fileSize}}): Não foi possível adicionar uma parte do ficheiro, pois o limite disponível é {{available}}.",
+    "pageLimitWithMax_one": "{{names}}: O seu documento tem demasiadas páginas. O limite é de {{max}} páginas. Reduza o número de páginas.",
+    "pageLimitWithMax_other": "{{names}}: Os seus documentos têm demasiadas páginas. O limite é de {{max}} páginas. Reduza o número de páginas.",
+    "pageLimitNoMax_one": "{{names}}: O seu documento tem demasiadas páginas. Reduza o número de páginas.",
+    "pageLimitNoMax_other": "{{names}}: Os seus documentos têm demasiadas páginas. Reduza o número de páginas."
+  }
+}

@@ -1,0 +1,46 @@
+GE-Televerse
+Copyright (c) État de Genève
+
+This product is licensed under the Apache License, Version 2.0
+(see LICENSE for the full text).
+
+================================================================================
+Works redistributed in source form with this product
+================================================================================
+
+Ce fichier recense les œuvres dont une copie est VERSIONNÉE dans ce dépôt. Les
+dépendances résolues au build (npm) ne sont pas listées ici : leur inventaire
+exact figure dans package.json et yarn.lock, et le SBOM de chaque version
+publiée est produit par la chaîne d'intégration (cf. SECURITY.md).
+
+1. Mock Service Worker (MSW) — service worker d'interception réseau
+   Source : https://github.com/mswjs/msw
+   Auteur : Artem Zakharchenko et les contributeurs de MSW
+   Licence : MIT License
+   Fichier embarqué : static/mockServiceWorker.js (version 2.13.6)
+   Utilisation : simulation de l'API backend en développement, activée
+                 uniquement lorsque MOCK_API=true. Ce fichier est généré par
+                 MSW et ne doit pas être édité à la main.
+
+2. <ge-televerse> — composant web hôte, copie figée d'un artefact de build
+   Auteur : État de Genève
+   Licence : Apache License 2.0
+   Fichier embarqué : src/demo/vendor/ge-televerse.js
+   Utilisation : page de démonstration du poste de travail (src/demo/). Ce
+                 fichier n'entre PAS dans le bundle de l'application mobile.
+                 Il s'agit d'une copie figée d'un artefact publié, versionnée
+                 pour que la démonstration fonctionne sans accès réseau
+                 sortant ; cf. src/demo/vendor/README.md pour la provenance,
+                 la date et l'empreinte sha256.
+
+   Ce bundle embarque lui-même, sous forme compilée :
+
+   a. Lit — bibliothèque de composants web
+      Source : https://github.com/lit/lit
+      Auteur : Google LLC
+      Licence : BSD 3-Clause License
+
+   b. M3E — composants web Material 3 Expressive
+      Source : https://github.com/matraic/m3e
+      Auteur : matraic
+      Licence : MIT License

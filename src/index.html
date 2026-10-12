@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+  GABARIT, et non point d'entrée : ce fichier ne désigne pas le code. rsbuild
+  injecte lui-même la balise du bundle (avec son empreinte), celle de la feuille
+  extraite et celle du favicon trouvé dans static/. L'entrée est déclarée dans
+  rsbuild.config.mjs. En désigner une ici à la main chargerait le bundle deux fois.
+
+  Le manifeste est servi tel quel depuis static/ (cf. server.publicDir), d'où un
+  chemin ABSOLU : l'application est servie sous /scan/<jeton>, un chemin relatif y
+  serait résolu contre /scan/.
+-->
+<html lang="fr">
+<head>
+    <!-- Reprend mot pour mot le <h1> de la page. Valeur française par défaut :
+         src/i18n/index.js la retraduit dès l'amorçage selon la langue détectée. -->
+    <title>Ajouter un document</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="robots" content="follow, index">
+    <meta name="rating" content="general">
+    <meta name="referrer" content="origin">
+    <meta name="rights" content="République et canton de Genève">
+    <link rel="author" href="https://www.ge.ch"/>
+    <link rel="publisher" href="https://www.ge.ch"/>
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+    <!-- État de Genève brand fonts -->
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/fonts.css" />
+    <!-- État de Genève M3 theme tokens -->
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+</head>
+<body>
+<noscript>Cette application ne peut fonctionner qu'avec Javascript.</noscript>
+<div id="app"></div>
+</body>
+</html>

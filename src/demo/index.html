@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Démo — Inscription</title>
+
+    <!-- État de Genève brand fonts + M3 design tokens -->
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/fonts.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+
+    <!-- Aucune balise vers du code local ici : rsbuild injecte celles du bundle
+         de cette page, de sa feuille extraite et du favicon. Ce que ce bundle
+         contient, et DANS QUEL ORDRE, est décrit dans index.js — l'ordre était
+         auparavant porté par la place des balises, il ne l'est plus. -->
+</head>
+<body>
+<main class="demo">
+    <header class="demo__header">
+        <h1 class="demo__title">Inscrivez-vous à notre service</h1>
+        <p class="demo__intro">
+            Cette page de démonstration intègre le web component
+            <code>&lt;ge-televerse&gt;</code> pour la pièce justificative.
+            Renseignez vos informations puis téléversez votre document.
+        </p>
+    </header>
+
+    <form id="registration-form" class="demo__form" novalidate>
+        <m3e-form-field variant="outlined" class="demo__field">
+            <label slot="label" for="first-name-input">Prénom</label>
+            <input id="first-name-input" name="firstName" type="text" autocomplete="given-name" required />
+        </m3e-form-field>
+
+        <m3e-form-field variant="outlined" class="demo__field">
+            <label slot="label" for="last-name-input">Nom</label>
+            <input id="last-name-input" name="lastName" type="text" autocomplete="family-name" required />
+        </m3e-form-field>
+
+        <section class="demo__attachment">
+            <h2 class="demo__attachment-title">Pièce d'identité et justificatif de domicile</h2>
+            <p class="demo__attachment-help">
+                Photographiez ou téléversez votre pièce d'identité et un justificatif de domicile récent.
+                Plusieurs pages peuvent être regroupées en un seul document.
+            </p>
+            <!-- Aucun attribut de taille : dans le contrat actuel, le
+                 webcomponent appelle POST /sessions depuis CETTE page hôte, et
+                 le serveur dérive le profil de taille de l'Origin (whitelist)
+                 puis ouvre la SPA avec un token opaque + callbackId (poignée de
+                 main postMessage). L'ancien `size-profile` (S/M/L/XL), qui se
+                 propageait en query `?sizeProfile=…`, est déprécié et sans
+                 effet — le client ne choisit plus la taille. -->
+            <ge-televerse
+                id="id-proof"
+                label="Téléverser mes documents"
+                show-onboarding
+            ></ge-televerse>
+            <!-- spa-url est posé par init.js, premier import du bundle de cette
+                 page (cf. index.js) : il s'exécute avant que ge-televerse
+                 n'« upgrade » l'élément. -->
+            <p id="attachment-status" class="demo__attachment-status" hidden>
+                <m3e-icon name="check_circle"></m3e-icon>
+                <span id="attachment-status-label"></span>
+            </p>
+        </section>
+
+        <div class="demo__actions">
+            <m3e-button id="submit-btn" type="submit" variant="filled">S'inscrire</m3e-button>
+        </div>
+    </form>
+
+    <section id="success" class="demo__success" hidden>
+        <m3e-icon name="task_alt" class="demo__success-icon"></m3e-icon>
+        <h2 class="demo__success-title">Inscription envoyée</h2>
+        <p class="demo__success-text">
+            Merci <span id="success-name"></span>, votre inscription a bien été enregistrée.
+        </p>
+        <p class="demo__success-doc">
+            Référence du document :
+            <code id="success-doc-id"></code>
+        </p>
+        <m3e-button id="restart-btn" variant="text">Recommencer</m3e-button>
+    </section>
+
+    <!-- Sélecteur de langue : sans effet sur cette page (dont le texte reste
+         en français), il pilote uniquement la langue dans laquelle la SPA
+         s'ouvre. La valeur choisie est propagée en query `?lang=` sur
+         l'attribut `spa-url` du web component (voir app.js) ; la SPA la lit via
+         son détecteur i18next. « Par défaut » (valeur vide) n'ajoute pas de
+         `?lang=`, la SPA retombe alors sur le français. -->
+    <footer class="demo__language">
+        <m3e-form-field variant="outlined" class="demo__language-field">
+            <label slot="label" for="lang-select">Langue de l'application</label>
+            <m3e-select id="lang-select">
+                <m3e-option value="">Par défaut (Français)</m3e-option>
+                <m3e-option value="fr">Français</m3e-option>
+                <m3e-option value="en">English</m3e-option>
+                <m3e-option value="de">Deutsch</m3e-option>
+                <m3e-option value="it">Italiano</m3e-option>
+                <m3e-option value="pt">Português</m3e-option>
+            </m3e-select>
+        </m3e-form-field>
+    </footer>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "GE Téléverse",
+    "or": "o",
+    "cancel": "Annulla",
+    "close": "Chiudi",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "move": "Sposta",
+    "openNewTab": "Apri in una nuova scheda",
+    "closePage": "Può chiudere questa pagina."
+  },
+  "a11y": {
+    "mainLabel": "Aggiunta di documenti",
+    "moveHandle": "Sposta {{name}}, pagina {{position}} di {{total}}",
+    "moveHandleHint": "Usi le frecce su e giù per cambiare l'ordine delle pagine, Inizio e Fine per metterla all'inizio o alla fine.",
+    "pageMoved": "{{name}} spostato in posizione {{position}} di {{total}}.",
+    "pageDeleted": "{{name}} rimosso dal documento.",
+    "uploadStarted": "Caricamento di {{name}} in corso.",
+    "uploadDone": "{{name}} aggiunto al documento.",
+    "uploadProgress": "Avanzamento del caricamento di {{name}}",
+    "thumbnailAlt": "Anteprima di {{name}}",
+    "storageUsed": "Spazio occupato dal documento",
+    "phoneStatus": "Stato del telefono",
+    "processing": "Elaborazione dell'immagine in corso",
+    "editActions": "Azioni di modifica",
+    "qrHint": "Questo codice QR apre la pagina di caricamento sul suo telefono.",
+    "pdfRegion_one": "Anteprima del documento, {{count}} pagina",
+    "pdfRegion_other": "Anteprima del documento, {{count}} pagine",
+    "pdfPage": "Pagina {{page}} di {{total}}",
+    "pdfLoading": "Caricamento dell'anteprima in corso",
+    "pdfNotReadable": "Questa anteprima è un'immagine del documento e non è leggibile da uno screen reader. Usi «Apri in una nuova scheda» per visualizzarlo nel visualizzatore PDF del suo browser.",
+    "timeRemaining": "Tempo rimanente: {{minutes}} minuti e {{seconds}} secondi."
+  },
+  "units": {
+    "byte": "B",
+    "kilobyte": "KB",
+    "megabyte": "MB",
+    "gigabyte": "GB"
+  },
+  "status": {
+    "notFound": {
+      "title": "Sessione non trovata",
+      "message": "Nessun token di sessione trovato nell'URL. Scansioni il codice QR dal Suo modulo."
+    },
+    "loading": {
+      "title": "Caricamento…",
+      "message": "Connessione alla sessione in corso"
+    },
+    "expired": {
+      "title": "La Sua sessione è scaduta",
+      "line1": "Il tempo disponibile è esaurito.",
+      "line2": "Chiuda questa pagina per tornare alla schermata precedente."
+    },
+    "error": {
+      "title": "Errore"
+    },
+    "cancelled": {
+      "title": "Caricamento annullato",
+      "secondaryLine1": "Il Suo telefono è stato disconnesso.",
+      "primaryLine1": "Nessun documento è stato salvato."
+    },
+    "finalizedSecondary": {
+      "title": "Pagine inviate"
+    }
+  },
+  "upload": {
+    "title": "Aggiungere un documento",
+    "intro": "Scelga i Suoi file dal computer o dal telefono, poi li salvi in un PDF.",
+    "introShort": "Scelga i Suoi file, poi li salvi in un PDF.",
+    "formatsHint": "Formati consentiti: {{formats}}.",
+    "maxPagesHint": "Il PDF finale da salvare può contenere al massimo {{count}} pagine.",
+    "cardTitle": "Scegliere i file",
+    "phoneConnected": "Telefono connesso",
+    "storageRemaining": "Spazio rimanente {{percent}}%",
+    "finalizing": "Unione in corso…",
+    "preview": "Anteprima",
+    "save": "Salva in un documento",
+    "done": "Ho finito",
+    "drop": {
+      "here": "Trascini qui i Suoi file",
+      "refusedFinalizing": "Unione in corso. Attenda prima di aggiungere file.",
+      "refusedUploading": "Un caricamento è già in corso. Attenda prima di aggiungere file.",
+      "refusedSize": "Il limite di dimensione disponibile è stato raggiunto. Elimini dei file per aggiungerne altri.",
+      "refusedPages": "Il limite è di {{count}} pagine. Elimini dei file per aggiungerne altri."
+    }
+  },
+  "fileCapture": {
+    "takePhoto": "Scattare una foto",
+    "chooseFile": "Scegliere un file",
+    "dragDrop": "Trascini e rilasci qui i Suoi file",
+    "selectFiles": "Selezionare i file",
+    "importOrPhoto": "Importare file o scattare foto"
+  },
+  "pageList": {
+    "heading": "Pagine del documento ({{count}})",
+    "retrying": "Nuovo tentativo…"
+  },
+  "pageEditor": {
+    "editing": "In modifica: {{fileName}}",
+    "back": "Indietro",
+    "backToList": "Torna all'elenco dei file",
+    "closeHelp": "Chiudi la guida",
+    "helpTitle": "Guida alla modifica",
+    "helpNote": "Ogni modifica viene applicata immediatamente e salvata automaticamente – non è necessario confermare.",
+    "helpSubtitle": "Azioni disponibili",
+    "help": "Guida",
+    "undoLast": "Annulla ultima operazione",
+    "undoAll": "Annulla tutto",
+    "hideMenu": "Nascondi il menu",
+    "showMenu": "Mostra il menu",
+    "changesApplied": "Le Sue modifiche sono state applicate",
+    "actions": {
+      "rotateRight": {
+        "label": "Ruota (destra)",
+        "description": "Ruota la pagina di 90° in senso orario."
+      },
+      "rotateLeft": {
+        "label": "Ruota (sinistra)",
+        "description": "Ruota la pagina di 90° in senso antiorario."
+      },
+      "whiteBalance": {
+        "label": "Bilanciamento del bianco",
+        "description": "Regola automaticamente la luminosità e il bilanciamento dei colori per far risaltare il testo."
+      },
+      "deskew": {
+        "label": "Raddrizza",
+        "description": "Rileva i contorni del documento e corregge la prospettiva quando lo scatto è obliquo."
+      },
+      "crop": {
+        "label": "Ritaglia",
+        "description": "Rileva automaticamente i bordi del documento e ritaglia l'immagine attorno ad essi."
+      }
+    },
+    "feedback": {
+      "noDocument": "Nessun documento rilevato – immagine invariata",
+      "rotationApplied": "Rotazione applicata",
+      "whiteBalanceApplied": "Bilanciamento del bianco applicato",
+      "perspectiveCorrected": "Prospettiva corretta",
+      "cropApplied": "Ritaglio applicato",
+      "editUndone": "Modifica annullata",
+      "editsUndone": "Modifiche annullate",
+      "errorBusy": "Il servizio è molto sollecitato — l'operazione non è riuscita, riprovi tra un istante",
+      "errorNetwork": "Connessione interrotta — l'operazione non è riuscita, verifichi la sua rete",
+      "errorGeneric": "L'operazione non è riuscita — riprovi",
+      "errorNotEditable": "Questa modifica si applica solo a foto e pagine scansionate — può ruotare o eliminare questa pagina",
+      "errorConflict": "La pagina è stata modificata nel frattempo — è appena stata aggiornata, riprovi se necessario",
+      "errorTooLarge": "La pagina modificata supererebbe la dimensione massima del documento — immagine invariata"
+    }
+  },
+  "pdfPreview": {
+    "title": "Anteprima del documento",
+    "fallback": "Impossibile visualizzare il PDF nell'applicazione."
+  },
+  "sessionCreator": {
+    "initTitle": "Inizializzazione…",
+    "initMessage": "Creazione della sessione in corso",
+    "busyWithTime": "Da questa postazione è già attiva un'altra finestra di caricamento (fino alle {{time}}). Può attendere oppure avviare subito una nuova sessione: la precedente verrà abbandonata.",
+    "busyNoTime": "Da questa postazione è già attiva un'altra finestra di caricamento. Può avviare una nuova sessione: la precedente verrà abbandonata.",
+    "startNew": "Avvia una nuova sessione",
+    "createFailed": "Impossibile creare la sessione"
+  },
+  "sessionExpiry": {
+    "title": "La Sua sessione sta per scadere",
+    "question": "Desidera rimanere su questa pagina?",
+    "stay": "Rimani su questa pagina"
+  },
+  "success": {
+    "intro": "Scelga i Suoi file dal computer o dal telefono, poi li salvi in un PDF.",
+    "introShort": "Scelga i Suoi file, poi li salvi in un PDF.",
+    "title": "Documento salvato!",
+    "savedWithCallback": "Il Suo documento è stato salvato. Chiuda la pagina per tornare alla Sua pratica online."
+  },
+  "errors": {
+    "server": "Si è verificato un errore. Stiamo facendo il possibile per ripristinare il servizio. Riprovi più tardi.",
+    "addFailed": "Aggiunta del file non riuscita",
+    "addPartiallyFailed": "Aggiunta del file riuscita solo in parte",
+    "cancelFailedTitle": "Annullamento non riuscito",
+    "cancelFailedMessage": "Impossibile disconnettere il telefono. Verifichi la connessione e riprovi.",
+    "finalize": "Errore durante la finalizzazione",
+    "disconnect": "Errore durante la disconnessione",
+    "loadSession": "Impossibile caricare la sessione",
+    "reorderFailedTitle": "Spostamento non riuscito",
+    "reorderFailedMessage": "Non è stato possibile salvare l'ordine delle pagine. Riprovi.",
+    "sessionFinalizing": "Il documento è in fase di salvataggio: non può più essere modificato.",
+    "deleteFailedTitle": "Eliminazione non riuscita",
+    "deleteFailedMessage": "Non è stato possibile eliminare la pagina. Riprovi.",
+    "invalidFormat": "{{name}}: Il file deve essere in un formato consentito ({{formats}}).",
+    "corrupt": "{{name}}: Il file è danneggiato o illeggibile. Modifichi il file e lo invii di nuovo.",
+    "infected": "{{name}}: Il file è stato rifiutato dal controllo antivirus. Invii un altro documento.",
+    "duplicate": "{{name}}: Questo file è già stato aggiunto al documento.",
+    "timeout": "{{name}}: Il caricamento ha richiesto troppo tempo. Verifichi la connessione e riprovi.",
+    "tooLarge413": "Il file è troppo pesante. Scelga un file più piccolo.",
+    "maxPagesReached": "È stato raggiunto il numero massimo di pagine.",
+    "uploadFailed": "Caricamento non riuscito.",
+    "short": "Non riuscito",
+    "fileTooLarge": "Questo file è di {{size}} {{unit}}. La dimensione massima consentita è di {{max}} {{unit}}.",
+    "sessionSizeExceeded": "{{name}} ({{fileSize}}): Impossibile allegare il file, il limite disponibile è di {{available}}.",
+    "sessionSizePartial": "{{name}} ({{fileSize}}): Non è stato possibile aggiungere una parte del file, poiché il limite disponibile è di {{available}}.",
+    "pageLimitWithMax_one": "{{names}}: Il Suo documento ha troppe pagine. Il limite è di {{max}} pagine. Riduca il numero di pagine.",
+    "pageLimitWithMax_other": "{{names}}: I Suoi documenti hanno troppe pagine. Il limite è di {{max}} pagine. Riduca il numero di pagine.",
+    "pageLimitNoMax_one": "{{names}}: Il Suo documento ha troppe pagine. Riduca il numero di pagine.",
+    "pageLimitNoMax_other": "{{names}}: I Suoi documenti hanno troppe pagine. Riduca il numero di pagine."
+  }
+}

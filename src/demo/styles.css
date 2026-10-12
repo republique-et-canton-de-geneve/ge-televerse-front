@@ -1,0 +1,174 @@
+/* Démo "Inscription" — utilise les jetons M3 de ge-theme. Toutes les
+   couleurs / typos viennent de --md-sys-color-* et --md-sys-typescale-*
+   chargés via theme.css. */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--md-sys-typescale-body-large-font, 'Roboto', sans-serif);
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+    min-height: 100dvh;
+    padding: 32px 16px 48px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* The [hidden] attribute is only `display: none` via the UA stylesheet,
+   which any author `display:` rule overrides. Author this explicitly so
+   `hidden` actually hides the success pane and status row. */
+[hidden] {
+    display: none !important;
+}
+
+.demo {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.demo__header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.demo__title {
+    font-size: var(--md-sys-typescale-headline-large-size, 32px);
+    line-height: var(--md-sys-typescale-headline-large-line-height, 40px);
+    font-weight: 700;
+    color: var(--md-sys-color-on-background);
+}
+
+.demo__intro {
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+    color: var(--md-sys-color-on-surface-variant);
+
+    code {
+        font-family: 'Roboto Mono', monospace;
+        padding: 1px 4px;
+        border-radius: 4px;
+        background: var(--md-sys-color-surface-container-low);
+    }
+}
+
+.demo__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: var(--md-sys-shape-corner-medium, 12px);
+    background: var(--md-sys-color-surface);
+    box-shadow:
+        0 1px 2px 0 rgba(24, 31, 37, 0.3),
+        0 1px 6px 2px rgba(24, 31, 37, 0.15);
+}
+
+.demo__field {
+    width: 100%;
+}
+
+.demo__attachment {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border-radius: var(--md-sys-shape-corner-small, 8px);
+    background: var(--md-sys-color-surface-container-low);
+}
+
+.demo__attachment-title {
+    font-size: var(--md-sys-typescale-title-medium-size, 16px);
+    line-height: var(--md-sys-typescale-title-medium-line-height, 24px);
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+}
+
+.demo__attachment-help {
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: 8px;
+}
+
+.demo__attachment-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    color: var(--md-sys-color-on-surface);
+
+    m3e-icon {
+        color: var(--md-sys-color-primary);
+        --m3e-icon-size: 20px;
+    }
+}
+
+.demo__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* Language picker footer — sits below everything in the centered column.
+   Only affects the SPA popup language; this page's copy stays French. */
+.demo__language {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.demo__language-field {
+    max-width: 280px;
+}
+
+.demo__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 40px 24px;
+    text-align: center;
+    border-radius: var(--md-sys-shape-corner-medium, 12px);
+    background: var(--md-sys-color-surface);
+    box-shadow:
+        0 1px 2px 0 rgba(24, 31, 37, 0.3),
+        0 1px 6px 2px rgba(24, 31, 37, 0.15);
+}
+
+.demo__success-icon {
+    --m3e-icon-size: 48px;
+    color: var(--md-sys-color-primary);
+}
+
+.demo__success-title {
+    font-size: var(--md-sys-typescale-headline-small-size, 24px);
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+}
+
+.demo__success-text,
+.demo__success-doc {
+    font-size: var(--md-sys-typescale-body-medium-size, 14px);
+    line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
+    color: var(--md-sys-color-on-surface-variant);
+
+    code {
+        display: inline-block;
+        font-family: 'Roboto Mono', monospace;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: var(--md-sys-color-surface-container);
+        color: var(--md-sys-color-on-surface);
+        word-break: break-all;
+    }
+}

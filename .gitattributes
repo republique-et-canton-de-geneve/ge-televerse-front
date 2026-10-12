@@ -1,0 +1,18 @@
+# Fins de ligne normalisées en LF dans le dépôt ET dans les copies de travail.
+# Le dépôt est publié et cloné depuis n'importe quel système : sans cette règle,
+# un poste Windows réintroduit des CRLF au premier `git add`, ce qui produit des
+# diffs de fichiers entiers sans le moindre changement de contenu.
+* text=auto eol=lf
+
+# Le lockfile est comparé octet à octet avec sa contrepartie interne par
+# scripts/sync-lockfile.sh (dépôt de la chaîne de build) : ses fins de ligne ne
+# doivent jamais dépendre du poste qui l'a régénéré.
+yarn.lock text eol=lf
+
+# Binaires : jamais de conversion.
+*.ico binary
+*.png binary
+*.jpg binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,254 @@
+{
+  "common": {
+    "appName": "GE Téléverse",
+    "or": "ou",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "edit": "Éditer",
+    "delete": "Supprimer",
+    "move": "Déplacer",
+    "openNewTab": "Ouvrir dans un nouvel onglet",
+    "closePage": "Vous pouvez fermer cette page."
+  },
+  "a11y": {
+    "mainLabel": "Ajout de documents",
+    "moveHandle": "Déplacer {{name}}, page {{position}} sur {{total}}",
+    "moveHandleHint": "Utilisez les flèches haut et bas pour changer l'ordre des pages, Origine et Fin pour la placer en premier ou en dernier.",
+    "pageMoved": "{{name}} déplacé en position {{position}} sur {{total}}.",
+    "pageDeleted": "{{name}} supprimé du document.",
+    "uploadStarted": "Envoi de {{name}} en cours.",
+    "uploadDone": "{{name}} ajouté au document.",
+    "uploadProgress": "Progression de l'envoi de {{name}}",
+    "thumbnailAlt": "Aperçu de {{name}}",
+    "storageUsed": "Espace utilisé par le document",
+    "phoneStatus": "État du téléphone",
+    "processing": "Traitement de l'image en cours",
+    "editActions": "Actions d'édition",
+    "qrHint": "Ce QR code ouvre la page de téléversement sur votre téléphone.",
+    "pdfRegion_one": "Aperçu du document, {{count}} page",
+    "pdfRegion_other": "Aperçu du document, {{count}} pages",
+    "pdfPage": "Page {{page}} sur {{total}}",
+    "pdfLoading": "Chargement de l'aperçu en cours",
+    "pdfNotReadable": "Cet aperçu est une image du document et n'est pas lisible par un lecteur d'écran. Utilisez « Ouvrir dans un nouvel onglet » pour l'afficher dans la visionneuse PDF de votre navigateur.",
+    "timeRemaining": "Temps restant : {{minutes}} minutes et {{seconds}} secondes."
+  },
+  "units": {
+    "byte": "o",
+    "kilobyte": "Ko",
+    "megabyte": "Mo",
+    "gigabyte": "Go"
+  },
+  "status": {
+    "notFound": {
+      "title": "Session introuvable",
+      "message": "Aucun jeton de session trouvé dans l'URL. Veuillez scanner le QR code depuis votre formulaire."
+    },
+    "loading": {
+      "title": "Chargement…",
+      "message": "Connexion à la session en cours"
+    },
+    "expired": {
+      "title": "Votre session a expiré",
+      "line1": "Le temps disponible est écoulé.",
+      "line2": "Fermez cette page pour revenir à l'écran précédent."
+    },
+    "error": {
+      "title": "Erreur"
+    },
+    "cancelled": {
+      "title": "Téléversement annulé",
+      "secondaryLine1": "Votre téléphone a été déconnecté.",
+      "primaryLine1": "Aucun document n'a été enregistré."
+    },
+    "finalizedSecondary": {
+      "title": "Pages transmises"
+    }
+  },
+  "upload": {
+    "title": "Ajouter un document",
+    "intro": "Choisissez vos fichiers depuis votre ordinateur ou votre téléphone, puis enregistrez dans un PDF.",
+    "introShort": "Choisissez vos fichiers, puis enregistrez dans un PDF.",
+    "formatsHint": "Les formats autorisés sont: {{formats}}.",
+    "maxPagesHint": "Pour le PDF final à enregistrer, vous avez un maximum de {{count}} pages.",
+    "cardTitle": "Choisir des fichiers",
+    "phoneConnected": "Téléphone connecté",
+    "storageRemaining": "Espace restant {{percent}}%",
+    "finalizing": "Fusion en cours…",
+    "preview": "Aperçu",
+    "save": "Enregistrer dans un document",
+    "done": "J'ai terminé",
+    "drop": {
+      "here": "Déposez vos fichiers ici",
+      "refusedFinalizing": "Fusion en cours. Patientez avant d'ajouter des fichiers.",
+      "refusedUploading": "Un envoi est déjà en cours. Patientez avant d'ajouter des fichiers.",
+      "refusedSize": "La limite de taille disponible est atteinte. Supprimez des fichiers pour en ajouter d'autres.",
+      "refusedPages": "La limite est de {{count}} pages. Supprimez des fichiers pour en ajouter d'autres."
+    }
+  },
+  "fileCapture": {
+    "takePhoto": "Prendre une photo",
+    "chooseFile": "Choisir un fichier",
+    "dragDrop": "Glisser et déposer vos fichiers ici",
+    "selectFiles": "Sélectionner des fichiers",
+    "importOrPhoto": "Importer des fichiers ou prendre des photos"
+  },
+  "pageList": {
+    "heading": "Pages du document ({{count}})",
+    "retrying": "Nouvelle tentative…"
+  },
+  "pageEditor": {
+    "editing": "En cours d'édition : {{fileName}}",
+    "back": "Retour",
+    "backToList": "Retour à la liste des fichiers",
+    "closeHelp": "Fermer l'aide",
+    "helpTitle": "Aide à l'édition",
+    "helpNote": "Toute modification est appliquée immédiatement et enregistrée automatiquement — pas besoin de confirmer.",
+    "helpSubtitle": "Actions disponibles",
+    "help": "Aide",
+    "undoLast": "Annuler dernière opération",
+    "undoAll": "Annuler tout",
+    "hideMenu": "Masquer le menu",
+    "showMenu": "Afficher le menu",
+    "changesApplied": "Vos modifications sont appliquées",
+    "actions": {
+      "rotateRight": {
+        "label": "Pivoter (droite)",
+        "description": "Tourne la page de 90° dans le sens horaire."
+      },
+      "rotateLeft": {
+        "label": "Pivoter (gauche)",
+        "description": "Tourne la page de 90° dans le sens anti-horaire."
+      },
+      "whiteBalance": {
+        "label": "Équilibrer les blancs",
+        "description": "Ajuste automatiquement la luminosité et la balance des couleurs pour faire ressortir le texte."
+      },
+      "deskew": {
+        "label": "Redresser",
+        "description": "Détecte les contours du document et corrige la perspective lorsque la prise de vue est de biais."
+      },
+      "crop": {
+        "label": "Recadrer",
+        "description": "Détecte automatiquement les bords du document et recadre l'image autour."
+      }
+    },
+    "feedback": {
+      "noDocument": "Aucun document détecté — image inchangée",
+      "rotationApplied": "Rotation appliquée",
+      "whiteBalanceApplied": "Balance des blancs appliquée",
+      "perspectiveCorrected": "Perspective corrigée",
+      "cropApplied": "Recadrage appliqué",
+      "editUndone": "Modification annulée",
+      "editsUndone": "Modifications annulées",
+      "errorBusy": "Le service est très sollicité — l'opération n'a pas abouti, réessayez dans un instant",
+      "errorNetwork": "Connexion interrompue — l'opération n'a pas abouti, vérifiez votre réseau",
+      "errorGeneric": "L'opération n'a pas abouti — réessayez",
+      "errorNotEditable": "Cette retouche ne s'applique qu'aux photos et aux pages numérisées — vous pouvez tourner ou supprimer cette page",
+      "errorConflict": "La page a été modifiée entre-temps — elle vient d'être mise à jour, réessayez si besoin",
+      "errorTooLarge": "La page retouchée dépasserait la taille maximale du document — image inchangée"
+    }
+  },
+  "pdfPreview": {
+    "title": "Aperçu du document",
+    "fallback": "Impossible d'afficher le PDF dans l'application."
+  },
+  "sessionCreator": {
+    "initTitle": "Initialisation…",
+    "initMessage": "Création de la session en cours",
+    "busyWithTime": "Une autre fenêtre de téléversement est déjà active depuis ce poste (jusqu'à {{time}}). Vous pouvez patienter ou démarrer immédiatement une nouvelle session — la précédente sera abandonnée.",
+    "busyNoTime": "Une autre fenêtre de téléversement est déjà active depuis ce poste. Vous pouvez démarrer une nouvelle session — la précédente sera abandonnée.",
+    "startNew": "Démarrer une nouvelle session",
+    "createFailed": "Impossible de créer la session"
+  },
+  "sessionExpiry": {
+    "title": "Votre session va bientôt expirer",
+    "question": "Souhaitez-vous rester sur cette page ?",
+    "stay": "Rester sur cette page"
+  },
+  "success": {
+    "intro": "Choisissez vos fichiers depuis votre ordinateur ou votre téléphone, puis enregistrez dans un PDF.",
+    "introShort": "Choisissez vos fichiers, puis enregistrez dans un PDF.",
+    "title": "Document enregistré !",
+    "savedWithCallback": "Votre document a été enregistré. Fermez la page pour revenir à votre e-démarche."
+  },
+  "errors": {
+    "server": "Une erreur est survenue. Nous faisons tout notre possible pour restaurer le service. Veuillez re-essayer plus tard.",
+    "addFailed": "L'ajout de fichier a échoué",
+    "addPartiallyFailed": "L'ajout de fichier a partiellement échoué",
+    "cancelFailedTitle": "L'annulation a échoué",
+    "cancelFailedMessage": "Impossible de déconnecter le téléphone. Vérifiez votre connexion puis essayez à nouveau.",
+    "finalize": "Erreur lors de la finalisation",
+    "disconnect": "Erreur lors de la déconnexion",
+    "loadSession": "Impossible de charger la session",
+    "reorderFailedTitle": "Le déplacement a échoué",
+    "reorderFailedMessage": "L'ordre des pages n'a pas pu être enregistré. Essayez à nouveau.",
+    "sessionFinalizing": "Le document est en cours d'enregistrement : il ne peut plus être modifié.",
+    "deleteFailedTitle": "La suppression a échoué",
+    "deleteFailedMessage": "La page n'a pas pu être supprimée. Essayez à nouveau.",
+    "invalidFormat": "{{name}} : Le fichier doit être au format autorisé ({{formats}}).",
+    "corrupt": "{{name}} : Le fichier est cassé ou illisible. Modifiez votre fichier puis envoyez-le à nouveau.",
+    "infected": "{{name}} : Le fichier a été rejeté par le contrôle antivirus. Envoyez un autre document.",
+    "duplicate": "{{name}} : Ce fichier a déjà été ajouté à votre document.",
+    "timeout": "{{name}} : Le téléversement a pris trop de temps. Vérifiez votre connexion puis essayez à nouveau.",
+    "tooLarge413": "Le fichier est trop lourd. Choisissez un fichier plus petit.",
+    "maxPagesReached": "Le nombre maximum de pages est atteint.",
+    "uploadFailed": "Échec du téléversement.",
+    "short": "Échec",
+    "fileTooLarge": "Ce fichier fait {{size}} {{unit}}. La taille maximale autorisée est de {{max}} {{unit}}.",
+    "sessionSizeExceeded": "{{name}} ({{fileSize}}): Impossible de joindre votre fichier, la limite disponible est de {{available}}.",
+    "sessionSizePartial": "{{name}} ({{fileSize}}): Une partie de votre fichier n'a pu être ajoutée, car la limite disponible est de {{available}}.",
+    "pageLimitWithMax_one": "{{names}} : Votre document a trop de pages. La limite est de {{max}} pages. Merci de réduire le nombre de pages.",
+    "pageLimitWithMax_other": "{{names}} : Vos documents ont trop de pages. La limite est de {{max}} pages. Merci de réduire le nombre de pages.",
+    "pageLimitNoMax_one": "{{names}} : Votre document a trop de pages. Merci de réduire le nombre de pages.",
+    "pageLimitNoMax_other": "{{names}} : Vos documents ont trop de pages. Merci de réduire le nombre de pages."
+  },
+  "onboarding": {
+    "steps": {
+      "intro": {
+        "title": "Bienvenue dans GE Téléverse !",
+        "text": "Ajoutez vos justificatifs et regroupez-les facilement dans un seul document PDF. Pour naviguer, cliquez sur Suivant ou Précédent. Vous pouvez fermer la visite à tout moment en cliquant sur fermer."
+      },
+      "addFiles": {
+        "title": "Ajoutez vos fichiers",
+        "text": "Glissez-déposez vos fichiers, sélectionnez-les depuis votre appareil ou utilisez le QR code pour les ajouter depuis votre téléphone."
+      },
+      "manageFiles": {
+        "title": "Organisez vos fichiers",
+        "text": "Réorganisez vos fichiers, supprimez ceux dont vous n'avez plus besoin ou sélectionnez un fichier pour le modifier."
+      },
+      "reorderFiles": {
+        "title": "Réorganisez les pages",
+        "text": "Glissez-déposez pour changer l'ordre de vos pages. Elles seront assemblées dans cet ordre précis dans le document PDF final."
+      },
+      "editFile": {
+        "title": "Modifiez votre fichier",
+        "text": "Pivotez, recadrez, redressez votre fichier ou équilibrez les blancs selon vos besoins. Vous pouvez également annuler vos modifications."
+      },
+      "itemActions": {
+        "title": "Gérez une page",
+        "text": "Modifiez ou supprimez la page si nécessaire."
+      },
+      "editTools": {
+        "title": "Éditez une page",
+        "text": "Pivotez, ajustez les contrastes, redressez la perspective ou recadrez votre page pour garantir sa lisibilité."
+      },
+      "editHelp": {
+        "title": "Besoin d'aide pour retoucher ?",
+        "text": "Le bouton d'aide vous guide avec des exemples et conseils pour chaque action de retouche."
+      },
+      "preview": {
+        "title": "Aperçu du document PDF",
+        "text": "Vérifiez le regroupement de vos pages dans un seul document PDF avant de l'enregistrer."
+      },
+      "finalize": {
+        "title": "Finalisez votre document",
+        "text": "Vérifiez votre document avec l'aperçu, puis enregistrez vos fichiers dans un document PDF."
+      },
+      "sessionExpiry": {
+        "title": "Votre session peut expirer",
+        "text": "En cas d'inactivité, une alerte vous prévient avant l'expiration de votre session. Vous pouvez choisir de rester sur la page pour continuer.",
+        "imageAlt": "Alerte expiration de session"
+      }
+    }
+  }
+}
