@@ -1,0 +1,50 @@
+publiccodeYmlVersion: 0.5.0
+name: ge-televerse-front
+applicationSuite: GE-Televerse
+url: https://github.com/republique-et-canton-de-geneve/ge-televerse-front
+releaseDate: 2026-10-07
+platforms:
+  - web
+categories:
+  - document-management
+usedBy:
+  - Canton de Genève
+developmentStatus: development
+softwareType: standalone/web
+organisation:
+  uri: https://ld.admin.ch/canton/25
+  name: Genève
+description:
+  fr-FR:
+    localisedName: ge-televerse-front
+    shortDescription: Application mobile de téléversement de documents pour les
+      formulaires en ligne de l'État de Genève (partie frontend)
+    longDescription: >-
+      GE-Televerse permet à un usager de scanner un document papier depuis son
+      téléphone et de le rattacher directement à un formulaire en ligne ouvert
+      sur son ordinateur.
+      Cette application est ouverte sur le téléphone de l'usager après qu'il a scanné un QR code affiché dans un formulaire en ligne sur son ordinateur. Elle permet de photographier ou sélectionner un document, de l'envoyer au backend (qui le convertit en PDF), puis de signaler que le téléversement est terminé.
+
+      Le flux utilisateur est le suivant :
+      - L'usager scanne le QR code → le téléphone ouvre /scan/{token}
+      - L'application charge la session et affiche les boutons de capture
+      - L'usager prend une ou plusieurs photos ou sélectionne des fichiers
+      - Chaque fichier est envoyé au backend et ajouté au PDF composite
+      - L'usager appuie sur Terminer → le backend notifie le formulaire sur l'ordinateur via SSE
+      - L'usager voit une confirmation et peut fermer la page
+    documentation: https://github.com/republique-et-canton-de-geneve/ge-televerse-front
+    features:
+      - scan de documents
+      - téléversement de documents
+legal:
+  license: Apache-2.0
+maintenance:
+  type: internal
+  contacts:
+    - name: Imade Benrouijal
+      email: imade.benrouijal@etat.ge.ch
+      affiliation: État de Genève - OCSIN
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - fr
